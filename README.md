@@ -25,7 +25,6 @@ Dieses Repository enthält die Konfiguration unseres Smart Homes. Hier ist erkl�
 
 | Gerät | Ort | Technischer Name |
 |---|---|---|
-| IKEA Zigbee-Fernbedienung | Küche | `dc14ddd326019a3d0075359d08144aa9` |
 | Shelly Wandschalter 1 | Küche (links) | `mainhouse_kitchen-shelly1` |
 | Shelly Wandschalter 2 | Küche (rechts) | `mainhouse_kitchen-shelly2` |
 | Aqara Magic Cube | Küche (Würfel auf der Theke) | `MainHouse-Kitchen_cube` |
@@ -82,15 +81,6 @@ Das Flutlicht im Hof geht bei Bewegung an.
 |---|---|---|---|---|
 | **Shelly 1** (links) | Küchenlicht An/Aus | Lichtstimmung wechseln | Radio aus | – |
 | **Shelly 2** (rechts) | Küchenlicht An/Aus | Lichtstimmung wechseln | – | Bandit Rock starten |
-
-### Mit der IKEA Fernbedienung
-
-| Taste | Funktion |
-|---|---|
-| Power | Küchenlicht An/Aus |
-| Pfeil rechts | Lichtstimmung wechseln |
-| Helligkeit + | Licht heller |
-| Helligkeit − | Licht dunkler |
 
 ### Mit dem Aqara Würfel (auf der Theke)
 
