@@ -68,9 +68,9 @@ Die Lampen an der Südfassade leuchten in zwei Zeitfenstern.
 
 Das Flutlicht im Hof geht bei Bewegung an.
 
-- **EIN:** Wenn einer der beiden Bewegungsmelder anspricht **und** es dunkel ist (Helligkeit unter 20 Lux)
+- **EIN:** Wenn einer der beiden Bewegungsmelder anspricht **und** es dunkel ist (Helligkeit unter 80 Lux)
 - **AUS:** 10 Minuten nachdem keine Bewegung mehr erkannt wird
-- **Manuell 1 Stunde:** Kann per Knopf oder App für genau 1 Stunde eingeschaltet werden (schaltet danach automatisch aus)
+- **Manuell 1 Stunde:** Kann per Knopf oder App für genau 1 Stunde eingeschaltet werden – ein zweiter Druck schaltet es sofort wieder aus
 
 ---
 

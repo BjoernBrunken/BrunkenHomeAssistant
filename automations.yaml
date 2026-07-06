@@ -27,7 +27,7 @@
     domain: light
   - condition: numeric_state
     entity_id: sensor.0x001788010ebadd57_illuminance
-    below: 20
+    below: 80
   actions:
   - type: turn_on
     device_id: 19249a4c4b96c8bc399e754341312909
@@ -71,39 +71,6 @@
     device_id: 19249a4c4b96c8bc399e754341312909
     entity_id: 44ca9d4650f3b79d975be7057a775610
     domain: light
-  mode: single
-- id: '1765287393297'
-  alias: Hoflicht 1 Stunde
-  description: ''
-  triggers:
-  - trigger: event
-    event_type: hoflicht_1h
-  conditions: []
-  actions:
-  - action: input_boolean.turn_on
-    target:
-      entity_id: input_boolean.hoflicht_override
-    data: {}
-  - action: light.turn_on
-    metadata: {}
-    data: {}
-    target:
-      entity_id: light.gard_mainhouse_floodligt
-  - delay:
-      hours: 1
-      minutes: 0
-      seconds: 0
-      milliseconds: 0
-  - action: input_boolean.turn_off
-    metadata: {}
-    data: {}
-    target:
-      entity_id: input_boolean.hoflicht_override
-  - action: light.turn_off
-    metadata: {}
-    data: {}
-    target:
-      entity_id: light.gard_mainhouse_floodligt
   mode: single
 - id: '1765288497726'
   alias: Hoflicht 1 Stunde
