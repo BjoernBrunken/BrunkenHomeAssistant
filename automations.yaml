@@ -430,19 +430,26 @@
 
 - id: party_modus_on
   alias: Party Modus – Start
-  description: Startet Colorloop-Effekt direkt auf den 14 Küchen-Spots
+  description: Startet Colorloop mit goldenen Winkel-Startfarben auf allen 14 Küchen-Spots
   triggers:
   - trigger: state
     entity_id: input_boolean.party_modus
     to: 'on'
   conditions: []
   actions:
-  - action: light.turn_on
-    target:
-      entity_id: light.mainhouse_kitchen_grp
-    data:
-      brightness: 200
-      effect: colorloop
+  - repeat:
+      count: 14
+      sequence:
+      - action: light.turn_on
+        target:
+          entity_id: "light.mainhouse_kitchen_{{ repeat.index }}"
+        data:
+          hs_color:
+            - "{{ (((repeat.index - 1) * 137.508) % 360) | int }}"
+            - 100
+          brightness: 200
+          effect: colorloop
+      - delay: '00:00:00.1'
   mode: single
 
 - id: party_modus_off
