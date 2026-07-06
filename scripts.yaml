@@ -1,0 +1,169 @@
+kuche_szene_wechseln:
+  alias: Küche Szene wechseln
+  sequence:
+    - choose:
+        - conditions:
+            - condition: state
+              entity_id: input_select.kuche_szene
+              state: "kochen"
+          sequence:
+            - action: input_select.select_option
+              target:
+                entity_id: input_select.kuche_szene
+              data:
+                option: "essen"
+            - action: scene.turn_on
+              target:
+                entity_id: scene.essen
+
+        - conditions:
+            - condition: state
+              entity_id: input_select.kuche_szene
+              state: "essen"
+          sequence:
+            - action: input_select.select_option
+              target:
+                entity_id: input_select.kuche_szene
+              data:
+                option: "abend"
+            - action: scene.turn_on
+              target:
+                entity_id: scene.abend
+
+        - conditions:
+            - condition: state
+              entity_id: input_select.kuche_szene
+              state: "abend"
+          sequence:
+            - action: input_select.select_option
+              target:
+                entity_id: input_select.kuche_szene
+              data:
+                option: "kochen"
+            - action: scene.turn_on
+              target:
+                entity_id: scene.kochen
+  mode: single
+  description: ""
+
+yamaha_bandit_rock:
+  alias: "Yamaha – Bandit Rock"
+  sequence:
+    - service: media_player.turn_on
+      target:
+        entity_id: media_player.yamaha_wohnzimmer
+    - delay: "00:00:02"
+    - service: media_player.select_source
+      target:
+        entity_id: media_player.yamaha_wohnzimmer
+      data:
+        source: "NET RADIO"
+    - delay: "00:00:04"
+    - service: media_player.play_media
+      target:
+        entity_id: media_player.yamaha_wohnzimmer
+      data:
+        media_content_type: "NET RADIO"
+        media_content_id: "Bookmarks>Favoriten>Bandit Rock"
+
+yamaha_mix_megapol:
+  alias: "Yamaha – Mix Megapol"
+  sequence:
+    - service: media_player.turn_on
+      target:
+        entity_id: media_player.yamaha_wohnzimmer
+    - delay: "00:00:02"
+    - service: media_player.select_source
+      target:
+        entity_id: media_player.yamaha_wohnzimmer
+      data:
+        source: "NET RADIO"
+    - delay: "00:00:04"
+    - service: media_player.play_media
+      target:
+        entity_id: media_player.yamaha_wohnzimmer
+      data:
+        media_content_type: "NET RADIO"
+        media_content_id: "Bookmarks>Favoriten>Mix Megapol"
+
+yamaha_rix_fm:
+  alias: "Yamaha – RIX FM"
+  sequence:
+    - service: media_player.turn_on
+      target:
+        entity_id: media_player.yamaha_wohnzimmer
+    - delay: "00:00:02"
+    - service: media_player.select_source
+      target:
+        entity_id: media_player.yamaha_wohnzimmer
+      data:
+        source: "NET RADIO"
+    - delay: "00:00:04"
+    - service: media_player.play_media
+      target:
+        entity_id: media_player.yamaha_wohnzimmer
+      data:
+        media_content_type: "NET RADIO"
+        media_content_id: "Bookmarks>Favoriten>RIX FM"
+
+yamaha_volume_up:
+  alias: "Yamaha – Lauter"
+  mode: queued
+  max: 10
+  sequence:
+    - service: media_player.volume_set
+      target:
+        entity_id: media_player.yamaha_wohnzimmer
+      data:
+        volume_level: "{{ state_attr('media_player.yamaha_wohnzimmer', 'volume_level') + 0.05 }}"
+
+yamaha_volume_down:
+  alias: "Yamaha – Leiser"
+  mode: queued
+  max: 10
+  sequence:
+    - service: media_player.volume_set
+      target:
+        entity_id: media_player.yamaha_wohnzimmer
+      data:
+        volume_level: "{{ state_attr('media_player.yamaha_wohnzimmer', 'volume_level') - 0.05 }}"
+
+yamaha_input_chromecast:
+  alias: "Yamaha – Input Chromecast"
+  sequence:
+    - service: media_player.turn_on
+      target:
+        entity_id: media_player.yamaha_wohnzimmer
+    - delay: "00:00:02"
+    - service: media_player.select_source
+      target:
+        entity_id: media_player.yamaha_wohnzimmer
+      data:
+        source: "OPTICAL1"
+
+kuche_toggle:
+  alias: "Küche – An/Aus"
+  sequence:
+    - action: light.toggle
+      target:
+        entity_id: light.kuche_gesamt
+  mode: single
+  description: ""
+  
+yamaha_toggle_mit_radio:
+  alias: "Yamaha – An/Aus mit Radio"
+  sequence:
+    - choose:
+        - conditions:
+            - condition: state
+              entity_id: media_player.yamaha_wohnzimmer
+              state: "off"
+          sequence:
+            - service: script.turn_on
+              target:
+                entity_id: script.yamaha_bandit_rock
+      default:
+        - service: media_player.turn_off
+          target:
+            entity_id: media_player.yamaha_wohnzimmer
+  mode: single

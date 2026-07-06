@@ -1,0 +1,144 @@
+- id: '1774968725544'
+  name: Kochen
+  entities:
+    light.kuche_gesamt:
+      min_color_temp_kelvin: 2020
+      max_color_temp_kelvin: 6329
+      min_mireds: 158
+      max_mireds: 495
+      effect_list:
+      - blink
+      - breathe
+      - channel_change
+      - colorloop
+      - finish_effect
+      - okay
+      - stop_colorloop
+      - stop_effect
+      supported_color_modes:
+      - color_temp
+      - xy
+      effect:
+      color_mode: color_temp
+      brightness: 255
+      color_temp_kelvin: 6329
+      color_temp: 158
+      hs_color:
+      - 37.231
+      - 3.66
+      rgb_color:
+      - 255
+      - 251
+      - 246
+      xy_color:
+      - 0.33
+      - 0.334
+      entity_id:
+      - light.0x44e2f8fffeece444
+      - light.0x348d13fffe79ffcf
+      - light.0xf0fd45fffef852a6
+      - light.mainhouse_kitchen_grp
+      icon: mdi:lightbulb-group
+      friendly_name: Küche Gesamt
+      supported_features: 44
+      state: 'on'
+  icon: mdi:food-steak
+  metadata:
+    light.kuche_gesamt:
+      entity_only: true
+- id: '1774968814318'
+  name: Essen
+  entities:
+    light.kuche_gesamt:
+      min_color_temp_kelvin: 2020
+      max_color_temp_kelvin: 6329
+      min_mireds: 158
+      max_mireds: 495
+      effect_list:
+      - blink
+      - breathe
+      - channel_change
+      - colorloop
+      - finish_effect
+      - okay
+      - stop_colorloop
+      - stop_effect
+      supported_color_modes:
+      - color_temp
+      - xy
+      effect:
+      color_mode: color_temp
+      brightness: 120
+      color_temp_kelvin: 3460
+      color_temp: 289
+      hs_color:
+      - 27.214
+      - 45.65
+      rgb_color:
+      - 255
+      - 191
+      - 139
+      xy_color:
+      - 0.456
+      - 0.374
+      entity_id:
+      - light.0x44e2f8fffeece444
+      - light.0x348d13fffe79ffcf
+      - light.0xf0fd45fffef852a6
+      - light.mainhouse_kitchen_grp
+      icon: mdi:lightbulb-group
+      friendly_name: Küche Gesamt
+      supported_features: 44
+      state: 'on'
+  icon: mdi:food-drumstick
+  metadata:
+    light.kuche_gesamt:
+      entity_only: true
+- id: '1774968911406'
+  name: Abend
+  entities:
+    light.kuche_gesamt:
+      min_color_temp_kelvin: 2020
+      max_color_temp_kelvin: 6329
+      min_mireds: 158
+      max_mireds: 495
+      effect_list:
+      - blink
+      - breathe
+      - channel_change
+      - colorloop
+      - finish_effect
+      - okay
+      - stop_colorloop
+      - stop_effect
+      supported_color_modes:
+      - color_temp
+      - xy
+      effect:
+      color_mode: color_temp
+      brightness: 130
+      color_temp_kelvin: 2020
+      color_temp: 495
+      hs_color:
+      - 30.512
+      - 93.472
+      rgb_color:
+      - 255
+      - 138
+      - 17
+      xy_color:
+      - 0.596
+      - 0.384
+      entity_id:
+      - light.0x44e2f8fffeece444
+      - light.0x348d13fffe79ffcf
+      - light.0xf0fd45fffef852a6
+      - light.mainhouse_kitchen_grp
+      icon: mdi:lightbulb-group
+      friendly_name: Küche Gesamt
+      supported_features: 44
+      state: 'on'
+  icon: mdi:lightbulb-night
+  metadata:
+    light.kuche_gesamt:
+      entity_only: true

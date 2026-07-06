@@ -1,0 +1,438 @@
+- id: '1764335657225'
+  alias: Hoflicht an bei Bewegung
+  description: ''
+  triggers:
+  - type: occupied
+    device_id: 99693693d854fea94ccd157f0e07885b
+    entity_id: 60618b096e57632cc5b0cbd2b10356d4
+    domain: binary_sensor
+    trigger: device
+  - type: occupied
+    device_id: 504d9cec0f813d4e2aeee2fcd28f0298
+    entity_id: cf9b7aa72b5761be5744c17a34f9a9ec
+    domain: binary_sensor
+    trigger: device
+  conditions:
+  - type: is_illuminance
+    condition: device
+    device_id: 99693693d854fea94ccd157f0e07885b
+    entity_id: 184f837e8fa6097ab9ad80eef54b1e9e
+    domain: sensor
+    below: 20
+    enabled: false
+  - condition: device
+    type: is_off
+    device_id: 19249a4c4b96c8bc399e754341312909
+    entity_id: 44ca9d4650f3b79d975be7057a775610
+    domain: light
+  - condition: numeric_state
+    entity_id: sensor.0x001788010ebadd57_illuminance
+    below: 20
+  actions:
+  - type: turn_on
+    device_id: 19249a4c4b96c8bc399e754341312909
+    entity_id: 44ca9d4650f3b79d975be7057a775610
+    domain: light
+  mode: single
+- id: '1764335867918'
+  alias: Hoflicht aus bei keiner Bewegung
+  description: ''
+  triggers:
+  - type: not_occupied
+    device_id: 99693693d854fea94ccd157f0e07885b
+    entity_id: 60618b096e57632cc5b0cbd2b10356d4
+    domain: binary_sensor
+    trigger: device
+    for:
+      hours: 0
+      minutes: 10
+      seconds: 0
+  - type: not_occupied
+    device_id: 504d9cec0f813d4e2aeee2fcd28f0298
+    entity_id: cf9b7aa72b5761be5744c17a34f9a9ec
+    domain: binary_sensor
+    trigger: device
+    for:
+      hours: 0
+      minutes: 10
+      seconds: 0
+  conditions:
+  - condition: device
+    type: is_on
+    device_id: 19249a4c4b96c8bc399e754341312909
+    entity_id: 44ca9d4650f3b79d975be7057a775610
+    domain: light
+  - condition: state
+    entity_id: input_boolean.hoflicht_override
+    state:
+    - 'off'
+  actions:
+  - type: turn_off
+    device_id: 19249a4c4b96c8bc399e754341312909
+    entity_id: 44ca9d4650f3b79d975be7057a775610
+    domain: light
+  mode: single
+- id: '1765287393297'
+  alias: Hoflicht 1 Stunde
+  description: ''
+  triggers:
+  - trigger: event
+    event_type: hoflicht_1h
+  conditions: []
+  actions:
+  - action: input_boolean.turn_on
+    target:
+      entity_id: input_boolean.hoflicht_override
+    data: {}
+  - action: light.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: light.gard_mainhouse_floodligt
+  - delay:
+      hours: 1
+      minutes: 0
+      seconds: 0
+      milliseconds: 0
+  - action: input_boolean.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: input_boolean.hoflicht_override
+  - action: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: light.gard_mainhouse_floodligt
+  mode: single
+- id: '1765288497726'
+  alias: Hoflicht 1 Stunde
+  description: ''
+  triggers:
+  - trigger: event
+    event_type: hoflicht_1h
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: light.gard_mainhouse_floodligt
+        state: 'off'
+      sequence:
+      - action: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.hoflicht_override
+      - action: light.turn_on
+        target:
+          entity_id: light.gard_mainhouse_floodligt
+      - delay:
+          hours: 1
+          minutes: 0
+          seconds: 0
+      - action: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.hoflicht_override
+      - action: light.turn_off
+        target:
+          entity_id: light.gard_mainhouse_floodligt
+    - conditions:
+      - condition: state
+        entity_id: light.gard_mainhouse_floodligt
+        state: 'on'
+      sequence:
+      - action: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.hoflicht_override
+      - action: light.turn_off
+        target:
+          entity_id: light.gard_mainhouse_floodligt
+  mode: single
+- id: '1767197144668'
+  alias: 'Küchenlicht '
+  description: ''
+  triggers:
+  - type: changed_states
+    device_id: 50de72812c199f60409b8a33a37b2665
+    entity_id: 3c58a9cb02448815898b893c39bdd3ae
+    domain: light
+    trigger: device
+  conditions: []
+  actions:
+  - type: toggle
+    device_id: 97bf84ea1e3ee67092bf7fe37be59973
+    entity_id: 52469430819eb117d3ec0ca640050618
+    domain: light
+  mode: single
+- id: '1767197158479'
+  alias: 'Küchenlicht '
+  description: ''
+  triggers:
+  - type: changed_states
+    device_id: 50de72812c199f60409b8a33a37b2665
+    entity_id: 3c58a9cb02448815898b893c39bdd3ae
+    domain: light
+    trigger: device
+  conditions: []
+  actions:
+  - type: toggle
+    device_id: 97bf84ea1e3ee67092bf7fe37be59973
+    entity_id: 52469430819eb117d3ec0ca640050618
+    domain: light
+  mode: single
+- id: '1772438573674'
+  alias: Window_Ambient_Kitchen_ON
+  description: Ambient-Licht in den Fensterleibungen einschalten (dezent), kurz vor
+    Sonnenuntergang.
+  triggers:
+  - event: sunset
+    offset: -00:20:00
+    trigger: sun
+  conditions:
+  - condition: state
+    entity_id: light.mainhouse_kitchen_ambient
+    state:
+    - 'off'
+  actions:
+  - data:
+      brightness_pct: 15
+    action: light.turn_on
+    target:
+      entity_id: light.mainhouse_kitchen_ambient
+  mode: restart
+- id: '1772438690524'
+  alias: Window_Ambient_Kitchen_OFF
+  description: Ambient-Licht in den Fensterleibungen ausschalten bei Sonnenaufgang.
+  triggers:
+  - event: sunrise
+    offset: 00:10:00
+    trigger: sun
+  conditions:
+  - condition: state
+    state:
+    - 'on'
+    entity_id: light.mainhouse_kitchen_ambient
+  actions:
+  - action: light.turn_off
+    data: {}
+    target:
+      entity_id: light.mainhouse_kitchen_ambient
+  mode: restart
+- id: ikea_kuche_toggle
+  alias: IKEA Remote – Küche An/Aus
+  description: Power-Taste togglet Küchenlicht
+  triggers:
+  - domain: mqtt
+    device_id: dc14ddd326019a3d0075359d08144aa9
+    type: action
+    subtype: toggle
+    trigger: device
+  conditions: []
+  actions:
+  - action: script.kuche_toggle
+    data: {}
+  mode: single
+- id: ikea_kuche_szene
+  alias: IKEA Remote – Küche Szene wechseln
+  description: Pfeil rechts schaltet Szene weiter
+  triggers:
+  - domain: mqtt
+    device_id: dc14ddd326019a3d0075359d08144aa9
+    type: action
+    subtype: arrow_right_click
+    trigger: device
+  conditions: []
+  actions:
+  - action: script.kuche_szene_wechseln
+    data: {}
+  mode: single
+- id: ikea_kuche_dim_up
+  alias: IKEA Remote – Küche Heller
+  triggers:
+  - domain: mqtt
+    device_id: dc14ddd326019a3d0075359d08144aa9
+    type: action
+    subtype: brightness_up_click
+    trigger: device
+  conditions: []
+  actions:
+  - action: light.turn_on
+    data:
+      brightness_step_pct: 10
+    target:
+      entity_id: light.kuche_gesamt
+  mode: single
+- id: ikea_kuche_dim_down
+  alias: IKEA Remote – Küche Dunkler
+  triggers:
+  - domain: mqtt
+    device_id: dc14ddd326019a3d0075359d08144aa9
+    type: action
+    subtype: brightness_down_click
+    trigger: device
+  conditions: []
+  actions:
+  - action: script.kuche_szene_wechseln
+    data: {}
+  mode: single
+- id: shelly_kuche1_toggle
+  alias: Mainhouse_kitchen-shelly2 – An/Aus
+  triggers:
+  - device_id: d66cb026643ec2894e445d8d27ce36d6
+    domain: shelly
+    type: single_push
+    subtype: button1
+    trigger: device
+  conditions: []
+  actions:
+  - action: script.kuche_toggle
+    data: {}
+  mode: single
+- id: shelly_kuche1_szene
+  alias: Mainhouse_kitchen-shelly2 – Szene wechseln
+  triggers:
+  - device_id: d66cb026643ec2894e445d8d27ce36d6
+    domain: shelly
+    type: single_push
+    subtype: button2
+    trigger: device
+  conditions: []
+  actions:
+  - action: script.kuche_szene_wechseln
+    data: {}
+  mode: single
+- id: shelly_kuche2_toggle
+  alias: Mainhouse_kitchen-shelly1 – An/Aus
+  triggers:
+  - device_id: 07ef79aa0517ad1eef2d8a0dc5231ed9
+    domain: shelly
+    type: single_push
+    subtype: button1
+    trigger: device
+  conditions: []
+  actions:
+  - action: script.kuche_toggle
+    data: {}
+  mode: single
+- id: shelly_kuche2_szene
+  alias: Mainhouse_kitchen-shelly1 – Szene wechseln
+  triggers:
+  - device_id: 07ef79aa0517ad1eef2d8a0dc5231ed9
+    domain: shelly
+    type: single_push
+    subtype: button2
+    trigger: device
+  conditions: []
+  actions:
+  - action: script.kuche_szene_wechseln
+    data: {}
+  mode: single
+- id: '1775575305470'
+  alias: Start_bandit_on_button
+  description: ''
+  triggers:
+  - device_id: 07ef79aa0517ad1eef2d8a0dc5231ed9
+    domain: shelly
+    type: double_push
+    subtype: button2
+    trigger: device
+  conditions: []
+  actions:
+  - action: script.yamaha_bandit_rock
+    metadata: {}
+    data: {}
+  mode: single
+- id: '1775575528152'
+  alias: Radio_off_on_button
+  description: ''
+  triggers:
+  - device_id: 07ef79aa0517ad1eef2d8a0dc5231ed9
+    domain: shelly
+    type: double_push
+    subtype: button1
+    metadata: {}
+    trigger: device
+  conditions: []
+  actions:
+  - action: media_player.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: media_player.yamaha_wohnzimmer
+  mode: single
+- alias: "Cube Küche – Seite 1 – Bandit Rock"
+  trigger:
+    - platform: mqtt
+      topic: zigbee2mqtt/MainHouse-Kitchen_cube/action
+  condition:
+    - condition: template
+      value_template: "{{ trigger.payload in ['flip90', 'flip180'] and states('sensor.mainhouse_kitchen_cube_side') == '1' }}"
+  action:
+    - service: script.turn_on
+      target:
+        entity_id: script.yamaha_bandit_rock
+
+- alias: "Cube Küche – Seite 2 – Mix Megapol"
+  trigger:
+    - platform: mqtt
+      topic: zigbee2mqtt/MainHouse-Kitchen_cube/action
+  condition:
+    - condition: template
+      value_template: "{{ trigger.payload in ['flip90', 'flip180'] and states('sensor.mainhouse_kitchen_cube_side') == '2' }}"
+  action:
+    - service: script.turn_on
+      target:
+        entity_id: script.yamaha_mix_megapol
+
+- alias: "Cube Küche – Seite 3 – RIX FM"
+  trigger:
+    - platform: mqtt
+      topic: zigbee2mqtt/MainHouse-Kitchen_cube/action
+  condition:
+    - condition: template
+      value_template: "{{ trigger.payload in ['flip90', 'flip180'] and states('sensor.mainhouse_kitchen_cube_side') == '3' }}"
+  action:
+    - service: script.turn_on
+      target:
+        entity_id: script.yamaha_rix_fm
+
+- alias: "Cube Küche – Seite 4 – Chromecast"
+  trigger:
+    - platform: mqtt
+      topic: zigbee2mqtt/MainHouse-Kitchen_cube/action
+  condition:
+    - condition: template
+      value_template: "{{ trigger.payload in ['flip90', 'flip180'] and states('sensor.mainhouse_kitchen_cube_side') == '4' }}"
+  action:
+    - service: script.turn_on
+      target:
+        entity_id: script.yamaha_input_chromecast
+
+- alias: "Cube Küche – Drehen rechts – Lauter"
+  trigger:
+    - platform: mqtt
+      topic: zigbee2mqtt/MainHouse-Kitchen_cube/action
+      payload: "rotate_right"
+  action:
+    - service: script.turn_on
+      target:
+        entity_id: script.yamaha_volume_up
+
+- alias: "Cube Küche – Drehen links – Leiser"
+  trigger:
+    - platform: mqtt
+      topic: zigbee2mqtt/MainHouse-Kitchen_cube/action
+      payload: "rotate_left"
+  action:
+    - service: script.turn_on
+      target:
+        entity_id: script.yamaha_volume_down
+
+- alias: "Cube Küche – Schütteln – An/Aus"
+  trigger:
+    - platform: mqtt
+      topic: zigbee2mqtt/MainHouse-Kitchen_cube/action
+      payload: "shake"
+  action:
+    - service: script.turn_on
+      target:
+        entity_id: script.yamaha_toggle_mit_radio

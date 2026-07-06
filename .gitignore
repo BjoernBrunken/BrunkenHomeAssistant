@@ -1,0 +1,26 @@
+# Sensitive data
+secrets.yaml
+
+# Database
+home-assistant_v2.db
+home-assistant_v2.db-shm
+home-assistant_v2.db-wal
+
+# Logs
+home-assistant.log
+home-assistant.log.1
+home-assistant.log.fault
+
+# Dependencies (auto-installed by HA)
+deps/
+
+# TTS cache
+tts/
+
+# Backups
+*.bak
+
+# Temporary / system files
+.storage/
+.cloud/
+.HA_VERSION
