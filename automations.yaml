@@ -253,6 +253,37 @@
     target:
       entity_id: media_player.yamaha_wohnzimmer
   mode: single
+
+- id: shelly_kuche2_bandit_rock
+  alias: Mainhouse_kitchen-shelly2 – Bandit Rock starten
+  triggers:
+  - device_id: d66cb026643ec2894e445d8d27ce36d6
+    domain: shelly
+    type: double_push
+    subtype: button2
+    trigger: device
+  conditions: []
+  actions:
+  - action: script.yamaha_bandit_rock
+    data: {}
+  mode: single
+
+- id: shelly_kuche2_radio_off
+  alias: Mainhouse_kitchen-shelly2 – Radio aus
+  triggers:
+  - device_id: d66cb026643ec2894e445d8d27ce36d6
+    domain: shelly
+    type: double_push
+    subtype: button1
+    trigger: device
+  conditions: []
+  actions:
+  - action: media_player.turn_off
+    data: {}
+    target:
+      entity_id: media_player.yamaha_wohnzimmer
+  mode: single
+
 - alias: "Cube Küche – Seite 1 – Bandit Rock"
   trigger:
     - platform: mqtt

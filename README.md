@@ -98,8 +98,8 @@ Beide Shellys steuern alle 14 Spots + Zusatzlampen gemeinsam über `light.kuche_
 
 | Schalter | Einzeldruck linke Taste | Einzeldruck rechte Taste | Doppeldruck linke Taste | Doppeldruck rechte Taste |
 |---|---|---|---|---|
-| **Shelly 1** (links) | Küchenlicht An/Aus | Lichtstimmung wechseln | Radio aus | – |
-| **Shelly 2** (rechts) | Küchenlicht An/Aus | Lichtstimmung wechseln | – | Bandit Rock starten |
+| **Shelly 1** (`mainhouse_kitchen-shelly1`) | Küchenlicht An/Aus | Lichtstimmung wechseln | Radio aus | Bandit Rock starten |
+| **Shelly 2** (`mainhouse_kitchen-shelly2`) | Küchenlicht An/Aus | Lichtstimmung wechseln | Radio aus | Bandit Rock starten |
 
 ### Mit dem Aqara Würfel (auf der Theke)
 
