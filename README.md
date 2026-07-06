@@ -20,11 +20,13 @@ Dieses Repository enthält die Konfiguration unseres Smart Homes. Hier ist erkl�
 | Gerät | Beschreibung | Technischer Name |
 |---|---|---|
 | Yamaha Receiver | AV-Verstärker im Wohnzimmer | `media_player.yamaha_wohnzimmer` |
+| MoOde Audio | Raspberry Pi Musikplayer auf der Terrasse | `media_player.terrasse` |
 
 ### Fernbedienungen & Schalter
 
 | Gerät | Ort | Technischer Name |
 |---|---|---|
+| IKEA Zigbee-Fernbedienung | Terrasse | `dc14ddd326019a3d0075359d08144aa9` |
 | Shelly Wandschalter 1 | Küche (links) | `mainhouse_kitchen-shelly1` |
 | Shelly Wandschalter 2 | Küche (rechts) | `mainhouse_kitchen-shelly2` |
 | Aqara Magic Cube | Küche (Würfel auf der Theke) | `MainHouse-Kitchen_cube` |
@@ -60,6 +62,19 @@ Die Lampen an der Südfassade leuchten in zwei Zeitfenstern.
 - **Morgens AUS:** 15 Minuten nach Sonnenaufgang
 
 > **Hinweis Sommer:** In Ramvik geht die Sonne im Juni schon um ~03:10 Uhr auf. Deshalb schalten die Lampen morgens im Sommer gar nicht erst ein – es ist ja schon hell.
+
+---
+
+### 📻 Terrasse – MoOde Audio (`media_player.terrasse`)
+
+Der Musikplayer auf der Terrasse wird über die IKEA-Fernbedienung gesteuert.
+
+| Taste | Funktion |
+|---|---|
+| Power | Play / Pause |
+| Pfeil rechts | Nächster Sender (Bandit Rock → RIX FM → Mix Megapol → Star FM → …) |
+| Helligkeit + | Lauter (+5%) |
+| Helligkeit − | Leiser (−5%) |
 
 ---
 

@@ -14,3 +14,14 @@ media_player:
     host: 192.168.68.84
     name: "Yamaha Wohnzimmer"
 
+input_select:
+  terrasse_sender:
+    name: Terrasse Sender
+    options:
+      - Bandit Rock
+      - RIX FM
+      - Mix Megapol
+      - Star FM
+    initial: Bandit Rock
+    icon: mdi:radio
+

@@ -396,3 +396,68 @@
     target:
       entity_id: light.mainhouse_exterior_light_south
   mode: single
+
+- id: ikea_terrasse_toggle
+  alias: IKEA Terrasse – Play/Pause
+  description: Power-Taste startet oder pausiert die Terrassen-Musik
+  triggers:
+  - domain: mqtt
+    device_id: dc14ddd326019a3d0075359d08144aa9
+    type: action
+    subtype: toggle
+    trigger: device
+  conditions: []
+  actions:
+  - action: media_player.media_play_pause
+    target:
+      entity_id: media_player.terrasse
+  mode: single
+
+- id: ikea_terrasse_sender
+  alias: IKEA Terrasse – Sender wechseln
+  description: Pfeil rechts schaltet zum nächsten Radiosender
+  triggers:
+  - domain: mqtt
+    device_id: dc14ddd326019a3d0075359d08144aa9
+    type: action
+    subtype: arrow_right_click
+    trigger: device
+  conditions: []
+  actions:
+  - action: script.terrasse_sender_wechseln
+    data: {}
+  mode: single
+
+- id: ikea_terrasse_lauter
+  alias: IKEA Terrasse – Lauter
+  triggers:
+  - domain: mqtt
+    device_id: dc14ddd326019a3d0075359d08144aa9
+    type: action
+    subtype: brightness_up_click
+    trigger: device
+  conditions: []
+  actions:
+  - action: media_player.volume_set
+    target:
+      entity_id: media_player.terrasse
+    data:
+      volume_level: "{{ [[(state_attr('media_player.terrasse', 'volume_level') + 0.05), 0.0] | max, 1.0] | min }}"
+  mode: single
+
+- id: ikea_terrasse_leiser
+  alias: IKEA Terrasse – Leiser
+  triggers:
+  - domain: mqtt
+    device_id: dc14ddd326019a3d0075359d08144aa9
+    type: action
+    subtype: brightness_down_click
+    trigger: device
+  conditions: []
+  actions:
+  - action: media_player.volume_set
+    target:
+      entity_id: media_player.terrasse
+    data:
+      volume_level: "{{ [[(state_attr('media_player.terrasse', 'volume_level') - 0.05), 0.0] | max, 1.0] | min }}"
+  mode: single

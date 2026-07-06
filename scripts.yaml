@@ -167,3 +167,74 @@ yamaha_toggle_mit_radio:
           target:
             entity_id: media_player.yamaha_wohnzimmer
   mode: single
+
+terrasse_sender_wechseln:
+  alias: "Terrasse – Sender wechseln"
+  sequence:
+    - choose:
+        - conditions:
+            - condition: state
+              entity_id: input_select.terrasse_sender
+              state: "Bandit Rock"
+          sequence:
+            - action: input_select.select_option
+              target:
+                entity_id: input_select.terrasse_sender
+              data:
+                option: "RIX FM"
+            - action: media_player.play_media
+              target:
+                entity_id: media_player.terrasse
+              data:
+                media_content_id: "https://fm01-ice.stream.khz.se/fm01_mp3"
+                media_content_type: "music"
+        - conditions:
+            - condition: state
+              entity_id: input_select.terrasse_sender
+              state: "RIX FM"
+          sequence:
+            - action: input_select.select_option
+              target:
+                entity_id: input_select.terrasse_sender
+              data:
+                option: "Mix Megapol"
+            - action: media_player.play_media
+              target:
+                entity_id: media_player.terrasse
+              data:
+                media_content_id: "https://live-bauerse-fm.sharp-stream.com/mixmegapol_instream_se_mp3"
+                media_content_type: "music"
+        - conditions:
+            - condition: state
+              entity_id: input_select.terrasse_sender
+              state: "Mix Megapol"
+          sequence:
+            - action: input_select.select_option
+              target:
+                entity_id: input_select.terrasse_sender
+              data:
+                option: "Star FM"
+            - action: media_player.play_media
+              target:
+                entity_id: media_player.terrasse
+              data:
+                media_content_id: "https://fm05-ice.stream.khz.se/fm05_mp3"
+                media_content_type: "music"
+        - conditions:
+            - condition: state
+              entity_id: input_select.terrasse_sender
+              state: "Star FM"
+          sequence:
+            - action: input_select.select_option
+              target:
+                entity_id: input_select.terrasse_sender
+              data:
+                option: "Bandit Rock"
+            - action: media_player.play_media
+              target:
+                entity_id: media_player.terrasse
+              data:
+                media_content_id: "https://fm02-ice.stream.khz.se/fm02_mp3"
+                media_content_type: "music"
+  mode: single
+  description: ""
