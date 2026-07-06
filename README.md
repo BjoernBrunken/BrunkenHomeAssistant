@@ -67,6 +67,13 @@ Die Lampen an der Südfassade leuchten in zwei Zeitfenstern.
 
 ---
 
+### 🎉 Party Modus (`input_boolean.party_modus`)
+
+Startet den Regenbogen-Effekt auf allen 14 Küchen-Spots über Node-RED.
+Ein-/Ausschalten über den Knopf im HA Dashboard (Kitchen-Karte).
+
+---
+
 ### 📻 Terrasse – MoOde Audio (`media_player.terrasse`)
 
 Der Musikplayer auf der Terrasse wird über die IKEA-Fernbedienung gesteuert.

@@ -428,6 +428,36 @@
       entity_id: light.mainhouse_exterior_light_south
   mode: single
 
+- id: party_modus_on
+  alias: Party Modus – Start
+  description: Sendet MQTT-Signal an Node-RED um Regenbogen-Effekt zu starten
+  triggers:
+  - trigger: state
+    entity_id: input_boolean.party_modus
+    to: 'on'
+  conditions: []
+  actions:
+  - action: mqtt.publish
+    data:
+      topic: nodered/rainbow/start
+      payload: start
+  mode: single
+
+- id: party_modus_off
+  alias: Party Modus – Stop
+  description: Sendet MQTT-Signal an Node-RED um Regenbogen-Effekt zu stoppen
+  triggers:
+  - trigger: state
+    entity_id: input_boolean.party_modus
+    to: 'off'
+  conditions: []
+  actions:
+  - action: mqtt.publish
+    data:
+      topic: nodered/rainbow/stop
+      payload: stop
+  mode: single
+
 - id: ikea_terrasse_toggle
   alias: IKEA Terrasse – Play/Pause
   description: Power-Taste startet oder pausiert die Terrassen-Musik

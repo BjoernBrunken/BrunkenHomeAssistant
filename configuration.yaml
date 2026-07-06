@@ -14,6 +14,11 @@ media_player:
     host: 192.168.68.84
     name: "Yamaha Wohnzimmer"
 
+input_boolean:
+  party_modus:
+    name: Party Modus
+    icon: mdi:party-popper
+
 input_select:
   terrasse_sender:
     name: Terrasse Sender
