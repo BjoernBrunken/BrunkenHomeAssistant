@@ -69,8 +69,9 @@ Die Lampen an der Südfassade leuchten in zwei Zeitfenstern.
 
 ### 🎉 Party Modus (`input_boolean.party_modus`)
 
-Startet den Regenbogen-Effekt auf allen 14 Küchen-Spots über Node-RED.
+Startet den Colorloop-Effekt direkt auf allen 14 Küchen-Spots (läuft in der Lampen-Hardware, kein Node-RED benötigt).
 Ein-/Ausschalten über den Knopf im HA Dashboard (Kitchen-Karte).
+Beim Ausschalten wird automatisch die Szene **Kochen** wiederhergestellt.
 
 ---
 
