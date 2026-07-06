@@ -436,3 +436,69 @@
     - service: script.turn_on
       target:
         entity_id: script.yamaha_toggle_mit_radio
+
+- id: exterior_south_evening_on
+  alias: Exterior_South_Evening_ON
+  description: Fassadenlampen Süd einschalten, 20 Min. vor Sonnenuntergang
+  triggers:
+  - event: sunset
+    offset: -00:20:00
+    trigger: sun
+  conditions:
+  - condition: state
+    entity_id: light.mainhouse_exterior_light_south
+    state: 'off'
+  actions:
+  - action: light.turn_on
+    target:
+      entity_id: light.mainhouse_exterior_light_south
+  mode: single
+
+- id: exterior_south_evening_off
+  alias: Exterior_South_Evening_OFF
+  description: Fassadenlampen Süd ausschalten um Mitternacht
+  triggers:
+  - trigger: time
+    at: '00:00:00'
+  conditions:
+  - condition: state
+    entity_id: light.mainhouse_exterior_light_south
+    state: 'on'
+  actions:
+  - action: light.turn_off
+    target:
+      entity_id: light.mainhouse_exterior_light_south
+  mode: single
+
+- id: exterior_south_morning_on
+  alias: Exterior_South_Morning_ON
+  description: Fassadenlampen Süd morgens einschalten (nur wenn Sonne noch unter dem Horizont)
+  triggers:
+  - trigger: time
+    at: '05:00:00'
+  conditions:
+  - condition: state
+    entity_id: sun.sun
+    state: 'below_horizon'
+  actions:
+  - action: light.turn_on
+    target:
+      entity_id: light.mainhouse_exterior_light_south
+  mode: single
+
+- id: exterior_south_morning_off
+  alias: Exterior_South_Morning_OFF
+  description: Fassadenlampen Süd ausschalten 15 Min. nach Sonnenaufgang
+  triggers:
+  - event: sunrise
+    offset: 00:15:00
+    trigger: sun
+  conditions:
+  - condition: state
+    entity_id: light.mainhouse_exterior_light_south
+    state: 'on'
+  actions:
+  - action: light.turn_off
+    target:
+      entity_id: light.mainhouse_exterior_light_south
+  mode: single
