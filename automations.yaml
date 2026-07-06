@@ -147,22 +147,6 @@
         target:
           entity_id: light.gard_mainhouse_floodligt
   mode: single
-- id: '1767197144668'
-  alias: 'Küchenlicht '
-  description: ''
-  triggers:
-  - type: changed_states
-    device_id: 50de72812c199f60409b8a33a37b2665
-    entity_id: 3c58a9cb02448815898b893c39bdd3ae
-    domain: light
-    trigger: device
-  conditions: []
-  actions:
-  - type: toggle
-    device_id: 97bf84ea1e3ee67092bf7fe37be59973
-    entity_id: 52469430819eb117d3ec0ca640050618
-    domain: light
-  mode: single
 - id: '1767197158479'
   alias: 'Küchenlicht '
   description: ''
