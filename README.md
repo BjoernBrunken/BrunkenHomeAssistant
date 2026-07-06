@@ -10,7 +10,9 @@ Dieses Repository enthält die Konfiguration unseres Smart Homes. Hier ist erkl�
 
 | Raum / Bereich | Beschreibung | Technischer Name |
 |---|---|---|
-| Küche | 3 Zigbee-Lampen als Gruppe | `light.kuche_gesamt` |
+| Küche – Spots | 14 Einbaustrahler (Zigbee2MQTT-Gruppe) | `light.mainhouse_kitchen_grp` |
+| Küche – Zusatzlampen | 3 weitere Zigbee-Lampen | `light.0x44e2f8...`, `light.0x348d13...`, `light.0xf0fd45...` |
+| Küche – Gesamt | Alle Küchenlampen als eine Gruppe (Spots + Zusatz) | `light.kuche_gesamt` |
 | Küche – Fenster | Ambientlicht in den Fensterleibungen | `light.mainhouse_kitchen_ambient` |
 | Fassade Süd | Außenlampen an der Südfassade | `light.mainhouse_exterior_light_south` |
 | Hof | Flutlicht am Haupthaus | `light.gard_mainhouse_floodligt` |
@@ -91,6 +93,8 @@ Das Flutlicht im Hof geht bei Bewegung an.
 ## 🎛️ Küche bedienen
 
 ### Mit den Wandschaltern (Shelly)
+
+Beide Shellys steuern alle 14 Spots + Zusatzlampen gemeinsam über `light.kuche_gesamt`.
 
 | Schalter | Einzeldruck linke Taste | Einzeldruck rechte Taste | Doppeldruck linke Taste | Doppeldruck rechte Taste |
 |---|---|---|---|---|
