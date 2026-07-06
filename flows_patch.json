@@ -1,0 +1,122 @@
+[
+    {
+        "id": "rainbow_init",
+        "type": "function",
+        "z": "12df0e2120915233",
+        "name": "Rainbow initialisieren",
+        "func": "const lamps = [];\nfor (let i = 1; i <= 14; i++) {\n  lamps.push(`MainHouse-Kitchen_${i}`);\n}\nglobal.set('rainbowActive', true);\nconst goldenAngle = 137.508;\nconst cycles = {};\nlamps.forEach((lamp, index) => {\n  cycles[lamp] = (index * goldenAngle) % 360;\n});\nglobal.set('lampCycles', cycles);\nglobal.set('lamps', lamps);\nnode.status({fill: \"green\", shape: \"dot\", text: \"Laeuft - 14 Lampen\"});\nreturn {payload: `Rainbow gestartet - ${lamps.length} Lampen`};",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 160,
+        "wires": [
+            [
+                "debug_init"
+            ]
+        ]
+    },
+    {
+        "id": "rainbow_loop",
+        "type": "inject",
+        "z": "12df0e2120915233",
+        "name": "Update alle 200ms",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "0.5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "tick",
+        "payloadType": "str",
+        "x": 330,
+        "y": 270,
+        "wires": [
+            [
+                "rainbow_calculator"
+            ]
+        ]
+    },
+    {
+        "id": "rainbow_calculator",
+        "type": "function",
+        "z": "12df0e2120915233",
+        "name": "Farben berechnen",
+        "func": "if (!global.get('rainbowActive')) {\n  return null;\n}\nconst lamps = global.get('lamps');\nconst lampCycles = global.get('lampCycles');\nif (!lamps || !lampCycles) {\n  node.warn('Lamps oder lampCycles nicht initialisiert');\n  return null;\n}\nObject.keys(lampCycles).forEach(lamp => {\n  lampCycles[lamp] = (lampCycles[lamp] + 20) % 360;\n});\nglobal.set('lampCycles', lampCycles);\nconst messages = [];\nlamps.forEach((lamp) => {\n  const hue = lampCycles[lamp];\n  messages.push({\n    topic: `zigbee2mqtt/${lamp}/set`,\n    payload: JSON.stringify({\n      color: { h: hue, s: 100 },\n      brightness: 200,\n      transition: 0.4\n    })\n  });\n});\nreturn [messages];",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 270,
+        "wires": [
+            [
+                "mqtt_split",
+                "debug_calc"
+            ]
+        ]
+    },
+    {
+        "id": "stop_handler",
+        "type": "function",
+        "z": "12df0e2120915233",
+        "name": "Stop",
+        "func": "global.set('rainbowActive', false);\nnode.status({fill: \"red\", shape: \"dot\", text: \"Gestoppt\"});\nreturn {payload: \"Rainbow gestoppt\"};",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 400,
+        "wires": [
+            [
+                "debug_stop"
+            ],
+            [
+                "rainbow_restore_func"
+            ]
+        ]
+    },
+    {
+        "id": "rainbow_restore_func",
+        "type": "function",
+        "z": "12df0e2120915233",
+        "name": "Lampen zuruecksetzen",
+        "func": "// Alle 14 Spots ueber die Gruppe auf warmes Weiss zuruecksetzen\nmsg.topic = 'zigbee2mqtt/MainHouse-Kitchen_GRP/set';\nmsg.payload = JSON.stringify({\n  color_temp: 300,\n  brightness: 180,\n  transition: 2.0\n});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 470,
+        "wires": [
+            [
+                "rainbow_restore_mqtt"
+            ]
+        ]
+    },
+    {
+        "id": "rainbow_restore_mqtt",
+        "type": "mqtt out",
+        "z": "12df0e2120915233",
+        "name": "Zigbee2MQTT Restore",
+        "topic": "",
+        "qos": "1",
+        "retain": false,
+        "broker": "5fdf061cc038ab42",
+        "x": 940,
+        "y": 470,
+        "wires": []
+    }
+]
