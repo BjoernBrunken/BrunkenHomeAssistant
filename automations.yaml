@@ -430,7 +430,7 @@
 
 - id: party_modus_on
   alias: Party Modus – Start
-  description: Startet Colorloop mit goldenen Winkel-Startfarben auf allen 14 Küchen-Spots
+  description: Startet Colorloop mit goldenen Winkel-Startfarben auf allen 14 Küchen-Spots via MQTT
   triggers:
   - trigger: state
     entity_id: input_boolean.party_modus
@@ -440,16 +440,11 @@
   - repeat:
       count: 14
       sequence:
-      - action: light.turn_on
-        target:
-          entity_id: "light.mainhouse_kitchen_{{ repeat.index }}"
+      - action: mqtt.publish
         data:
-          hs_color:
-            - "{{ (((repeat.index - 1) * 137.508) % 360) | int }}"
-            - 100
-          brightness: 200
-          effect: colorloop
-      - delay: '00:00:00.1'
+          topic: "zigbee2mqtt/MainHouse-Kitchen_{{ repeat.index }}/set"
+          payload: "{{ {'color': {'h': (((repeat.index - 1) * 137.508) % 360) | int, 's': 100}, 'brightness': 200, 'effect': 'colorloop'} | to_json }}"
+      - delay: '00:00:00.2'
   mode: single
 
 - id: party_modus_off
