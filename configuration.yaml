@@ -18,6 +18,14 @@ input_boolean:
   party_modus:
     name: Party Modus
     icon: mdi:party-popper
+  badtunna_override:
+    name: Badtunna Pumpe Manuell
+    icon: mdi:pump
+
+input_button:
+  badtunna_6h:
+    name: Pumpe 6 Stunden
+    icon: mdi:pump
 
 input_select:
   terrasse_sender:

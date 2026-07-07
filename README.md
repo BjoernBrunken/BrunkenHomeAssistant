@@ -137,6 +137,27 @@ Durch Drücken der rechten Taste am Wandschalter oder der Pfeil-Taste an der IKE
 
 ---
 
+---
+
+## 🛁 Badetonne – Skimmer-Pumpe (`switch.garden_badtunna_pump`)
+
+### Manuell – 6 Stunden
+
+Über den Knopf **„Pumpe 6 Stunden"** (`input_button.badtunna_6h`) im Dashboard:
+
+- **Einmal drücken:** Pumpe läuft 6 Stunden, dann automatisch aus
+- **Nochmal drücken während sie läuft:** Pumpe sofort stoppen
+
+### Täglich automatisch
+
+- **Uhrzeit:** Jeden Tag um 10:00 Uhr
+- **Laufzeit:** 30 Minuten
+- **Bedingungen:** Pumpe läuft nur automatisch, wenn Außentemperatur > 5°C **und** kein manueller 6h-Betrieb aktiv ist
+
+> **Hinweis Winter:** Unterhalb von 5°C Außentemperatur läuft die Pumpe nicht automatisch – im Winter einfach den 6h-Knopf benutzen wenn die Tonne in Betrieb ist.
+
+---
+
 ## 🔧 Technische Infos
 
 - **Smart Home System:** [Home Assistant](https://www.home-assistant.io/)

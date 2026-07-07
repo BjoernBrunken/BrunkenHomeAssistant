@@ -520,6 +520,75 @@
       volume_level: "{{ [[(state_attr('media_player.terrasse', 'volume_level') + 0.05), 0.0] | max, 1.0] | min }}"
   mode: single
 
+- id: badtunna_6h
+  alias: Badtunna – Pumpe 6 Stunden
+  description: Pumpe manuell 6 Stunden einschalten; zweiter Druck stoppt sofort
+  triggers:
+  - trigger: state
+    entity_id: input_button.badtunna_6h
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: switch.garden_badtunna_pump
+        state: 'off'
+      sequence:
+      - action: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.badtunna_override
+      - action: switch.turn_on
+        target:
+          entity_id: switch.garden_badtunna_pump
+      - delay:
+          hours: 6
+          minutes: 0
+          seconds: 0
+      - action: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.badtunna_override
+      - action: switch.turn_off
+        target:
+          entity_id: switch.garden_badtunna_pump
+    - conditions:
+      - condition: state
+        entity_id: switch.garden_badtunna_pump
+        state: 'on'
+      sequence:
+      - action: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.badtunna_override
+      - action: switch.turn_off
+        target:
+          entity_id: switch.garden_badtunna_pump
+  mode: restart
+
+- id: badtunna_daily
+  alias: Badtunna – Tägliche Pumpen-Laufzeit
+  description: Pumpe täglich 30 Min. um 10:00 Uhr (nur wenn Außentemp > 5°C und kein manueller Betrieb aktiv)
+  triggers:
+  - trigger: time
+    at: '10:00:00'
+  conditions:
+  - condition: state
+    entity_id: input_boolean.badtunna_override
+    state: 'off'
+  - condition: numeric_state
+    entity_id: sensor.mainhouse_temp_out_1_temperature
+    above: 5
+  actions:
+  - action: switch.turn_on
+    target:
+      entity_id: switch.garden_badtunna_pump
+  - delay:
+      hours: 0
+      minutes: 30
+      seconds: 0
+  - action: switch.turn_off
+    target:
+      entity_id: switch.garden_badtunna_pump
+  mode: single
+
 - id: ikea_terrasse_leiser
   alias: IKEA Terrasse – Leiser
   triggers:
