@@ -428,6 +428,22 @@
       entity_id: light.mainhouse_exterior_light_south
   mode: single
 
+- id: exterior_south_backstop_off
+  alias: Exterior_South_Backstop_OFF
+  description: Sicherheits-Aus um 07:00 falls Fassadenlampen noch brennen (z.B. nach HA-Neustart)
+  triggers:
+  - trigger: time
+    at: '07:00:00'
+  conditions:
+  - condition: state
+    entity_id: light.mainhouse_exterior_light_south
+    state: 'on'
+  actions:
+  - action: light.turn_off
+    target:
+      entity_id: light.mainhouse_exterior_light_south
+  mode: single
+
 - id: party_modus_on
   alias: Party Modus – Start
   description: Startet Colorloop mit goldenen Winkel-Startfarben auf allen 14 Küchen-Spots via MQTT
