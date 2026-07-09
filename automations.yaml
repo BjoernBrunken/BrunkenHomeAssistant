@@ -371,12 +371,12 @@
     trigger: sun
   conditions:
   - condition: state
-    entity_id: light.mainhouse_exterior_light_south
+    entity_id: switch.0x7cc6b6fffee7895e
     state: 'off'
   actions:
-  - action: light.turn_on
+  - action: switch.turn_on
     target:
-      entity_id: light.mainhouse_exterior_light_south
+      entity_id: switch.0x7cc6b6fffee7895e
   mode: single
 
 - id: exterior_south_evening_off
@@ -387,12 +387,12 @@
     at: '00:00:00'
   conditions:
   - condition: state
-    entity_id: light.mainhouse_exterior_light_south
+    entity_id: switch.0x7cc6b6fffee7895e
     state: 'on'
   actions:
-  - action: light.turn_off
+  - action: switch.turn_off
     target:
-      entity_id: light.mainhouse_exterior_light_south
+      entity_id: switch.0x7cc6b6fffee7895e
   mode: single
 
 - id: exterior_south_morning_on
@@ -406,9 +406,9 @@
     entity_id: sun.sun
     state: 'below_horizon'
   actions:
-  - action: light.turn_on
+  - action: switch.turn_on
     target:
-      entity_id: light.mainhouse_exterior_light_south
+      entity_id: switch.0x7cc6b6fffee7895e
   mode: single
 
 - id: exterior_south_morning_off
@@ -420,12 +420,12 @@
     trigger: sun
   conditions:
   - condition: state
-    entity_id: light.mainhouse_exterior_light_south
+    entity_id: switch.0x7cc6b6fffee7895e
     state: 'on'
   actions:
-  - action: light.turn_off
+  - action: switch.turn_off
     target:
-      entity_id: light.mainhouse_exterior_light_south
+      entity_id: switch.0x7cc6b6fffee7895e
   mode: single
 
 - id: exterior_south_backstop_off
@@ -436,12 +436,12 @@
     at: '07:00:00'
   conditions:
   - condition: state
-    entity_id: light.mainhouse_exterior_light_south
+    entity_id: switch.0x7cc6b6fffee7895e
     state: 'on'
   actions:
-  - action: light.turn_off
+  - action: switch.turn_off
     target:
-      entity_id: light.mainhouse_exterior_light_south
+      entity_id: switch.0x7cc6b6fffee7895e
   mode: single
 
 - id: party_modus_on
