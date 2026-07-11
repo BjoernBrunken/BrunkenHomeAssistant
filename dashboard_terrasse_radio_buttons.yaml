@@ -1,0 +1,46 @@
+type: vertical-stack
+cards:
+  - type: media-control
+    entity: media_player.terasse_radio
+  - type: horizontal-stack
+    cards:
+      - type: button
+        name: Bandit Rock
+        icon: mdi:radio
+        tap_action:
+          action: call-service
+          service: media_player.play_media
+          data:
+            entity_id: media_player.terasse_radio
+            media_content_id: "https://fm02-ice.stream.khz.se/fm02_mp3"
+            media_content_type: music
+      - type: button
+        name: RIX FM
+        icon: mdi:radio
+        tap_action:
+          action: call-service
+          service: media_player.play_media
+          data:
+            entity_id: media_player.terasse_radio
+            media_content_id: "https://fm01-ice.stream.khz.se/fm01_mp3"
+            media_content_type: music
+      - type: button
+        name: Mix Megapol
+        icon: mdi:radio
+        tap_action:
+          action: call-service
+          service: media_player.play_media
+          data:
+            entity_id: media_player.terasse_radio
+            media_content_id: "https://live-bauerse-fm.sharp-stream.com/mixmegapol_instream_se_mp3"
+            media_content_type: music
+      - type: button
+        name: Star FM
+        icon: mdi:radio
+        tap_action:
+          action: call-service
+          service: media_player.play_media
+          data:
+            entity_id: media_player.terasse_radio
+            media_content_id: "https://fm05-ice.stream.khz.se/fm05_mp3"
+            media_content_type: music
