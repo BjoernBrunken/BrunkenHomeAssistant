@@ -184,7 +184,7 @@ terrasse_sender_wechseln:
                 option: "RIX FM"
             - action: media_player.play_media
               target:
-                entity_id: media_player.terrasse
+                entity_id: media_player.terrasse_radio
               data:
                 media_content_id: "https://fm01-ice.stream.khz.se/fm01_mp3"
                 media_content_type: "music"
@@ -200,7 +200,7 @@ terrasse_sender_wechseln:
                 option: "Mix Megapol"
             - action: media_player.play_media
               target:
-                entity_id: media_player.terrasse
+                entity_id: media_player.terrasse_radio
               data:
                 media_content_id: "https://live-bauerse-fm.sharp-stream.com/mixmegapol_instream_se_mp3"
                 media_content_type: "music"
@@ -216,7 +216,7 @@ terrasse_sender_wechseln:
                 option: "Star FM"
             - action: media_player.play_media
               target:
-                entity_id: media_player.terrasse
+                entity_id: media_player.terrasse_radio
               data:
                 media_content_id: "https://fm05-ice.stream.khz.se/fm05_mp3"
                 media_content_type: "music"
@@ -232,7 +232,7 @@ terrasse_sender_wechseln:
                 option: "Bandit Rock"
             - action: media_player.play_media
               target:
-                entity_id: media_player.terrasse
+                entity_id: media_player.terrasse_radio
               data:
                 media_content_id: "https://fm02-ice.stream.khz.se/fm02_mp3"
                 media_content_type: "music"
