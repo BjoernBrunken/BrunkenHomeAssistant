@@ -18,7 +18,7 @@ Stand: **28.10.2026** (nach dem Umzug vom alten Raspberry Pi auf unraid).
 | **Mirror** (Raspberry Pi 2) | 192.168.68.77 | Wandanzeige: Firefox-Kiosk mit Grafana |
 | ESP32 „Barometer“ | DHCP (zuletzt .68.94) | Akkutank-Fühler + Luftdruck, sendet an .66 |
 | MobileAlerts-Gateway (TFA) | 192.168.68.73 | Funk-Gateway der TFA-Sensoren, Proxy → unraid:8081 |
-| Siemens Kochfeld | 192.168.68.89 | Home Connect lokal über hcpy |
+| Siemens Kochfeld | 192.168.68.88 | Home Connect lokal über hcpy (IP in `appdata/hcpy/config/devices.json`, im Deco reservieren!) |
 
 Statische IPs außerhalb des DHCP-Pools (`.2 – .69`) werden vom Deco nie vergeben – dort liegen .66, .67 und .77.
 
@@ -77,6 +77,16 @@ Zigbee-Geräte ──► zigbee2mqtt ──► mosquitto (.100) ─────�
 
 ---
 
+## Backup
+
+- Plugin **Appdata Backup** auf unraid, Ziel: Synology **BRUNKEN-NAS** (192.168.68.45), NFS-Freigabe `/volume1/unraid-backup`, eingebunden über Unassigned Devices unter `/mnt/remotes/BRUNKEN-NAS_unraid-backup/appdata-backup`.
+- **Jeden Montag 04:00**, Container werden nacheinander kurz gestoppt, Sicherung wird geprüft. Aufbewahrung: mindestens 8 Sicherungen, ältere als 56 Tage werden gelöscht. Zusätzlich Sicherung des USB-Sticks (unraid-Konfiguration).
+- Ausgenommen: Immich-Vorschaubilder und umgewandelte Videos (`immich/library/thumbs`, `encoded-video`, ~45 GB, regenerierbar). Die Fotos selbst liegen auf der Synology (`/volume1/photo`).
+- Zusätzlich gesichert: `appdata/maserver` (Quellcode/Konfig des MobileAlerts-Images, hat kein Volume).
+- Eine Sicherung ist ca. 2 GB groß. Wiederherstellen: unraid → Settings → Appdata Backup → Restore.
+
+---
+
 ## Grafana
 
 - Dashboards (Export: [`infra/grafana/`](../infra/grafana/)): **WeatherMore**, **tanks**, **Weather test**. Datenquelle `BRUNKEN-SRV01_InfluxDB` (uid `dfg6sxrlykidcf`), Abfragen auf Policy `default`.
@@ -122,5 +132,5 @@ Warnschwellen abgeleitet aus der Kessel-Historie 2023–2026: Median 42 °C, 99 
 - [ ] Retention-Policy `two_years` in InfluxDB löschen.
 - [ ] unraid-Netzmaske `br0` von /24 auf /22 korrigieren (Deco-Netz ist /22).
 - [ ] Spa-Sensor (`/home/spa`) und TFA-Regensensor prüfen – derzeit keine Daten.
+- [ ] Kochfeld-IP 192.168.68.88 im Deco reservieren (MAC 68:A4:0E:8C:F0:C0).
 - [ ] Nach der Migration aufräumen: Grafana-Service-Account `claude-migration`, SSH-Schlüssel auf unraid/Pi/Mirror.
-- [ ] Alte Handy-Einträge in HA (Mobile App `BBr_Mobil`, `Mara mobil`) löschen.
