@@ -1,0 +1,11 @@
+# Woechentlicher Neustart des Grafana-Kiosk (Firefox laeuft auf dem Pi 2 sonst mit der Zeit zaeh)
+0 3 * * 0 root /sbin/shutdown -r now
+// Kiosk: kein "Sitzung wiederherstellen" / keine Hinweisleisten nach Stromausfall
+user_pref("browser.sessionstore.resume_from_crash", false);
+user_pref("browser.sessionstore.max_resumed_crashes", -1);
+user_pref("toolkit.startup.max_resumed_crashes", -1);
+user_pref("browser.startup.page", 0);
+user_pref("browser.shell.checkDefaultBrowser", false);
+user_pref("datareporting.policy.dataSubmissionEnabled", false);
+user_pref("browser.aboutwelcome.enabled", false);
+user_pref("app.update.auto", false);

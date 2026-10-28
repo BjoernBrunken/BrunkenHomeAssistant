@@ -13,7 +13,10 @@ Dieses Repository enthält die Konfiguration unseres Smart Homes. Hier ist erkl�
 | Küche – Spots | 14 Einbaustrahler (Zigbee2MQTT-Gruppe) | `light.mainhouse_kitchen_grp` |
 | Küche – Zusatzlampen | 3 weitere Zigbee-Lampen | `light.0x44e2f8...`, `light.0x348d13...`, `light.0xf0fd45...` |
 | Küche – Gesamt | Alle Küchenlampen als eine Gruppe (Spots + Zusatz) | `light.kuche_gesamt` |
-| Küche – Fenster | Ambientlicht in den Fensterleibungen | `light.mainhouse_kitchen_ambient` |
+| Küche – Fenster | Ambientlicht in den Fensterleibungen (Gruppe, inkl. Sturz) | `light.mainhouse_kitchen_ambient` |
+| Küche – Sturz | Ambientlicht im Sturz zum Wohnzimmer (in der Fenster-Gruppe) | `light.mainhouse_kitchen_ambient_lintel` |
+| Bad – Spots | 8 Spots (Zigbee2MQTT-Gruppe) | `light.mainhouse_bath_grp` |
+| Bad – Fenster | Ambientlicht im Badfenster | `light.mainhouse_bath_ambient_window` |
 | Fassade Süd | Außenlampen an der Südfassade | `light.mainhouse_exterior_light_south` |
 | Hof | Flutlicht am Haupthaus | `light.gard_mainhouse_floodligt` |
 
@@ -40,6 +43,8 @@ Dieses Repository enthält die Konfiguration unseres Smart Homes. Hier ist erkl�
 | Bewegungsmelder 1 | Hof | `binary_sensor` (Gerät `99693693...`) |
 | Bewegungsmelder 2 | Hof | `binary_sensor` (Gerät `504d9cec...`) |
 | Helligkeitssensor | Hof | `sensor.0x001788010ebadd57_illuminance` |
+| Kesseltemperatur | Holzvergaser (TFA-Sensor mit externem Fühler) | `sensor.holzvergaser_kesseltemperatur` |
+| Heizraum | Temperatur / Luftfeuchte am selben TFA-Sensor | `sensor.holzvergaser_heizraum_temperatur`, `…_luftfeuchte` |
 
 ---
 
@@ -51,6 +56,21 @@ Das dezente Licht in den Küchenfensterleibungen geht automatisch an und aus.
 
 - **Abends EIN:** 20 Minuten vor Sonnenuntergang – auf 15 % Helligkeit
 - **Morgens AUS:** 10 Minuten nach Sonnenaufgang
+
+---
+
+### 🌅 Bad – Fensterlicht (`light.mainhouse_bath_ambient_window`)
+
+Wie in der Küche:
+
+- **Abends EIN:** 20 Minuten vor Sonnenuntergang – auf 15 % Helligkeit
+- **Morgens AUS:** 10 Minuten nach Sonnenaufgang
+
+---
+
+### 🍳 Küche – Licht beim Kochen
+
+Wenn das Kochfeld eingeschaltet wird (Siemens, lokal über hcpy) und es nicht zu hell ist (Helligkeit unter 250 Lux), gehen die 3 Spots über dem Kochfeld auf 100 % kaltweiß an. Drückt man währenddessen den Wandschalter, wird die Szene **Kochen** aktiviert statt das Licht auszuschalten.
 
 ---
 
@@ -95,6 +115,7 @@ Das Flutlicht im Hof geht bei Bewegung an.
 - **EIN:** Wenn einer der beiden Bewegungsmelder anspricht **und** es dunkel ist (Helligkeit unter 80 Lux)
 - **AUS:** 10 Minuten nachdem keine Bewegung mehr erkannt wird
 - **Manuell 1 Stunde:** Kann per Knopf oder App für genau 1 Stunde eingeschaltet werden – ein zweiter Druck schaltet es sofort wieder aus
+- **Sicherung:** Der Schalter „Hoflicht Override“ setzt sich nach 2 Stunden (und nach jedem HA-Neustart) automatisch zurück. Sonst würde das Licht nie wieder automatisch ausgehen.
 
 ---
 
@@ -135,7 +156,23 @@ Durch Drücken der rechten Taste am Wandschalter oder der Pfeil-Taste an der IKE
 | **Essen** (`scene.essen`) | 47 % | Warmweißes Licht (3460 K) | Gemeinsames Essen |
 | **Abend** (`scene.abend`) | 51 % | Sehr warmes Bernsteinlicht (2020 K) | Gemütlicher Abend |
 
----
+Zusätzlich per Kachel „Dunkler Tag“ im Dashboard (Home, unter „Kitchen“):
+
+| Stimmung | Helligkeit | Lichtfarbe | Wofür? |
+|---|---|---|---|
+| **Dunkler Tag** (`scene.kuche_dunkler_tag`) | 30 % | Warm (RGB 255, 209, 138) + Vitrinenlicht 30 % | Ein wenig Licht an trüben Tagen |
+
+## 🛁 Lichtstimmungen im Bad
+
+Fünf Kacheln im Dashboard-Tab **Badrum** (Abschnitt „Szenen Spots“), alle 8 Spots auf 30 %:
+
+| Szene | Farbe (RGB) |
+|---|---|
+| Pfirsich (`scene.bad_pfirsich`) | 255, 209, 173 |
+| Warmweiß (`scene.bad_warmweiss`) | 255, 224, 194 |
+| Apricot (`scene.bad_apricot`) | 255, 196, 173 |
+| Rosé (`scene.bad_rose`) | 255, 182, 193 |
+| Himmelblau (`scene.bad_himmelblau`) | 135, 206, 250 |
 
 ---
 
@@ -158,6 +195,22 @@ Durch Drücken der rechten Taste am Wandschalter oder der Pfeil-Taste an der IKE
 
 ---
 
+## 🔥 Holzvergaser – Temperaturwarnung
+
+Push-Nachricht an beide Handys (Björn, Mara):
+
+| Situation | Wann | Benachrichtigung |
+|---|---|---|
+| **Warnung** | Kessel 5 Minuten über der Warnschwelle (**95 °C**) | normal, Kanal „Heizung“ |
+| **Kritisch** | Kessel über der kritischen Schwelle (**98 °C**) | sofort, Alarmton – klingelt auch bei lautlos |
+| **Fühler ausgefallen** | 30 Minuten kein Messwert | normal |
+
+- Die Schwellen sind im Dashboard verstellbar (`input_number.holzvergaser_warnschwelle` / `…_kritische_schwelle`).
+- Eine neue Warnung kommt erst, wenn die Temperatur zwischendurch wieder unter die Schwelle gefallen ist.
+- Zum Testen nicht die Schwelle senken – das löst nichts aus (es zählt nur das Überschreiten von unten).
+
+---
+
 ## 🔧 Technische Infos
 
 - **Smart Home System:** [Home Assistant](https://www.home-assistant.io/)
@@ -165,3 +218,4 @@ Durch Drücken der rechten Taste am Wandschalter oder der Pfeil-Taste an der IKE
 - **Zigbee-Geräte:** Verbunden über Zigbee2MQTT (MQTT-Protokoll)
 - **Shelly-Geräte:** Verbunden über die Shelly-Integration
 - **Standort für Sonnenauf/-untergang:** Ramvik, Härnösand (62.7°N, 17.9°E)
+- **Server, MQTT, InfluxDB, Grafana, Wandanzeige:** siehe [docs/INFRASTRUKTUR.md](docs/INFRASTRUKTUR.md)

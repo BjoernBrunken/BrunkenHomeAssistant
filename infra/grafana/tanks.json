@@ -1,0 +1,1023 @@
+{
+ "annotations": {
+  "list": [
+   {
+    "builtIn": 1,
+    "datasource": {
+     "type": "grafana",
+     "uid": "-- Grafana --"
+    },
+    "enable": true,
+    "hide": true,
+    "iconColor": "rgba(0, 211, 255, 1)",
+    "name": "Annotations & Alerts",
+    "type": "dashboard"
+   }
+  ]
+ },
+ "editable": true,
+ "fiscalYearStartMonth": 0,
+ "graphTooltip": 0,
+ "id": 3186424367644672,
+ "links": [],
+ "panels": [
+  {
+   "datasource": {
+    "type": "influxdb",
+    "uid": "dfg6sxrlykidcf"
+   },
+   "description": "",
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "thresholds"
+     },
+     "decimals": 0,
+     "mappings": [],
+     "max": 95,
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "green",
+        "value": 0
+       },
+       {
+        "color": "#EAB839",
+        "value": 50
+       },
+       {
+        "color": "orange",
+        "value": 75
+       },
+       {
+        "color": "red",
+        "value": 90
+       }
+      ]
+     },
+     "unit": "celsius"
+    },
+    "overrides": []
+   },
+   "gridPos": {
+    "h": 4,
+    "w": 23,
+    "x": 0,
+    "y": 0
+   },
+   "id": 2,
+   "options": {
+    "displayMode": "lcd",
+    "legend": {
+     "calcs": [],
+     "displayMode": "list",
+     "placement": "bottom",
+     "showLegend": false
+    },
+    "maxVizHeight": 300,
+    "minVizHeight": 10,
+    "minVizWidth": 0,
+    "namePlacement": "auto",
+    "orientation": "horizontal",
+    "reduceOptions": {
+     "calcs": [
+      "lastNotNull"
+     ],
+     "fields": "",
+     "values": false
+    },
+    "showUnfilled": true,
+    "sizing": "auto",
+    "valueMode": "color"
+   },
+   "pluginVersion": "12.1.1",
+   "targets": [
+    {
+     "alias": "#1",
+     "datasource": {
+      "type": "influxdb",
+      "uid": "dfg6sxrlykidcf"
+     },
+     "groupBy": [
+      {
+       "params": [
+        "$__interval"
+       ],
+       "type": "time"
+      },
+      {
+       "params": [
+        "null"
+       ],
+       "type": "fill"
+      }
+     ],
+     "measurement": "sensor_data",
+     "orderByTime": "ASC",
+     "policy": "default",
+     "query": "SELECT mean(\"Temp\")  / 2 FROM \"sensor_data\" WHERE (\"ID\"::field = '28eb4d3133201a8' OR \"ID\"::field = '28e7cc2d33201f9') AND $timeFilter GROUP BY time($__interval) fill(null)",
+     "rawQuery": false,
+     "refId": "A",
+     "resultFormat": "time_series",
+     "select": [
+      [
+       {
+        "params": [
+         "Temp"
+        ],
+        "type": "field"
+       },
+       {
+        "params": [],
+        "type": "median"
+       }
+      ]
+     ],
+     "tags": [
+      {
+       "key": "ID::field",
+       "operator": "=",
+       "value": "28eb4d3133201a8"
+      },
+      {
+       "condition": "OR",
+       "key": "ID::field",
+       "operator": "=",
+       "value": "28e7cc2d33201f9"
+      }
+     ]
+    },
+    {
+     "alias": "#test1",
+     "datasource": {
+      "type": "influxdb",
+      "uid": "dfg6sxrlykidcf"
+     },
+     "groupBy": [
+      {
+       "params": [
+        "$__interval"
+       ],
+       "type": "time"
+      },
+      {
+       "params": [
+        "null"
+       ],
+       "type": "fill"
+      }
+     ],
+     "hide": true,
+     "measurement": "sensor_data",
+     "orderByTime": "ASC",
+     "policy": "default",
+     "query": "SELECT mean(\"Temp\") FROM \"sensor_data\" WHERE (\"ID\"::field = '28eb4d3133201a8') AND $timeFilter GROUP BY time($__interval) fill(null)",
+     "rawQuery": false,
+     "refId": "B",
+     "resultFormat": "time_series",
+     "select": [
+      [
+       {
+        "params": [
+         "Temp"
+        ],
+        "type": "field"
+       },
+       {
+        "params": [],
+        "type": "mean"
+       }
+      ]
+     ],
+     "tags": [
+      {
+       "key": "ID::field",
+       "operator": "=",
+       "value": "28eb4d3133201a8"
+      }
+     ]
+    },
+    {
+     "alias": "#test2",
+     "datasource": {
+      "type": "influxdb",
+      "uid": "dfg6sxrlykidcf"
+     },
+     "groupBy": [
+      {
+       "params": [
+        "$__interval"
+       ],
+       "type": "time"
+      },
+      {
+       "params": [
+        "null"
+       ],
+       "type": "fill"
+      }
+     ],
+     "hide": true,
+     "measurement": "sensor_data",
+     "orderByTime": "ASC",
+     "policy": "default",
+     "query": "SELECT mean(\"Temp\") FROM \"sensor_data\" WHERE (\"ID\"::field = '28eb4d3133201a8') AND $timeFilter GROUP BY time($__interval) fill(null)",
+     "rawQuery": false,
+     "refId": "C",
+     "resultFormat": "time_series",
+     "select": [
+      [
+       {
+        "params": [
+         "Temp"
+        ],
+        "type": "field"
+       },
+       {
+        "params": [],
+        "type": "mean"
+       }
+      ]
+     ],
+     "tags": [
+      {
+       "key": "ID::field",
+       "operator": "=",
+       "value": "28e7cc2d33201f9"
+      }
+     ]
+    },
+    {
+     "alias": "#2",
+     "datasource": {
+      "type": "influxdb",
+      "uid": "dfg6sxrlykidcf"
+     },
+     "groupBy": [
+      {
+       "params": [
+        "$__interval"
+       ],
+       "type": "time"
+      },
+      {
+       "params": [
+        "null"
+       ],
+       "type": "fill"
+      }
+     ],
+     "hide": false,
+     "measurement": "sensor_data",
+     "orderByTime": "ASC",
+     "policy": "default",
+     "query": "SELECT mean(\"Temp\")  / 2 FROM \"sensor_data\" WHERE (\"ID\"::field = '28eb4d3133201a8' OR \"ID\"::field = '28e7cc2d33201f9') AND $timeFilter GROUP BY time($__interval) fill(null)",
+     "rawQuery": false,
+     "refId": "D",
+     "resultFormat": "time_series",
+     "select": [
+      [
+       {
+        "params": [
+         "Temp"
+        ],
+        "type": "field"
+       },
+       {
+        "params": [],
+        "type": "median"
+       }
+      ]
+     ],
+     "tags": [
+      {
+       "key": "ID::field",
+       "operator": "=",
+       "value": "288ac03833201e8"
+      },
+      {
+       "condition": "OR",
+       "key": "ID::field",
+       "operator": "=",
+       "value": "28ffb13d33201ba"
+      }
+     ]
+    },
+    {
+     "alias": "#3",
+     "datasource": {
+      "type": "influxdb",
+      "uid": "dfg6sxrlykidcf"
+     },
+     "groupBy": [
+      {
+       "params": [
+        "$__interval"
+       ],
+       "type": "time"
+      },
+      {
+       "params": [
+        "null"
+       ],
+       "type": "fill"
+      }
+     ],
+     "hide": false,
+     "measurement": "sensor_data",
+     "orderByTime": "ASC",
+     "policy": "default",
+     "query": "SELECT mean(\"Temp\")  / 2 FROM \"sensor_data\" WHERE (\"ID\"::field = '28eb4d3133201a8' OR \"ID\"::field = '28e7cc2d33201f9') AND $timeFilter GROUP BY time($__interval) fill(null)",
+     "rawQuery": false,
+     "refId": "E",
+     "resultFormat": "time_series",
+     "select": [
+      [
+       {
+        "params": [
+         "Temp"
+        ],
+        "type": "field"
+       },
+       {
+        "params": [],
+        "type": "median"
+       }
+      ]
+     ],
+     "tags": [
+      {
+       "key": "ID::field",
+       "operator": "=",
+       "value": "288ac03833201e8"
+      },
+      {
+       "condition": "OR",
+       "key": "ID::field",
+       "operator": "=",
+       "value": "288dc43933201fd"
+      }
+     ]
+    },
+    {
+     "alias": "#4 new",
+     "datasource": {
+      "type": "influxdb",
+      "uid": "dfg6sxrlykidcf"
+     },
+     "groupBy": [
+      {
+       "params": [
+        "$__interval"
+       ],
+       "type": "time"
+      },
+      {
+       "params": [
+        "null"
+       ],
+       "type": "fill"
+      }
+     ],
+     "hide": false,
+     "measurement": "sensor_data",
+     "orderByTime": "ASC",
+     "policy": "default",
+     "query": "SELECT mean(\"Temp\")\nFROM \"sensor_data\"\nWHERE (\"ID\"::field = '28dc8d3733201eb' OR \"ID\"::field = '28fd1a3233201d')\n  AND $timeFilter\nGROUP BY time($__interval) fill(null)\n",
+     "rawQuery": true,
+     "refId": "F",
+     "resultFormat": "time_series",
+     "select": [
+      [
+       {
+        "params": [
+         "Temp"
+        ],
+        "type": "field"
+       },
+       {
+        "params": [],
+        "type": "median"
+       }
+      ]
+     ],
+     "tags": [
+      {
+       "key": "ID::field",
+       "operator": "=",
+       "value": "288ac03833201e8"
+      },
+      {
+       "condition": "OR",
+       "key": "ID::field",
+       "operator": "=",
+       "value": "288dc43933201fd"
+      }
+     ]
+    },
+    {
+     "alias": "#4 old",
+     "datasource": {
+      "type": "influxdb",
+      "uid": "dfg6sxrlykidcf"
+     },
+     "groupBy": [
+      {
+       "params": [
+        "$__interval"
+       ],
+       "type": "time"
+      },
+      {
+       "params": [
+        "null"
+       ],
+       "type": "fill"
+      }
+     ],
+     "hide": false,
+     "measurement": "sensor_data",
+     "orderByTime": "ASC",
+     "policy": "default",
+     "query": "SELECT mean(\"Temp\")  / 2 FROM \"sensor_data\" WHERE (\"ID\"::field = '28eb4d3133201a8' OR \"ID\"::field = '28e7cc2d33201f9') AND $timeFilter GROUP BY time($__interval) fill(null)",
+     "rawQuery": false,
+     "refId": "G",
+     "resultFormat": "time_series",
+     "select": [
+      [
+       {
+        "params": [
+         "Temp"
+        ],
+        "type": "field"
+       },
+       {
+        "params": [],
+        "type": "median"
+       }
+      ]
+     ],
+     "tags": [
+      {
+       "key": "ID::field",
+       "operator": "=",
+       "value": "28dc8d3733201eb"
+      },
+      {
+       "condition": "OR",
+       "key": "ID::field",
+       "operator": "=",
+       "value": "28fd1a3233201d"
+      }
+     ]
+    }
+   ],
+   "timeFrom": "5m",
+   "title": "Akkumulatortank",
+   "type": "bargauge"
+  },
+  {
+   "datasource": {
+    "type": "influxdb",
+    "uid": "dfg6sxrlykidcf"
+   },
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "palette-classic"
+     },
+     "custom": {
+      "axisBorderShow": false,
+      "axisCenteredZero": false,
+      "axisColorMode": "text",
+      "axisLabel": "",
+      "axisPlacement": "auto",
+      "barAlignment": 0,
+      "barWidthFactor": 0.6,
+      "drawStyle": "line",
+      "fillOpacity": 0,
+      "gradientMode": "none",
+      "hideFrom": {
+       "legend": false,
+       "tooltip": false,
+       "viz": false
+      },
+      "insertNulls": false,
+      "lineInterpolation": "linear",
+      "lineWidth": 1,
+      "pointSize": 5,
+      "scaleDistribution": {
+       "type": "linear"
+      },
+      "showPoints": "auto",
+      "spanNulls": true,
+      "stacking": {
+       "group": "A",
+       "mode": "none"
+      },
+      "thresholdsStyle": {
+       "mode": "off"
+      }
+     },
+     "mappings": [],
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "green",
+        "value": 0
+       },
+       {
+        "color": "red",
+        "value": 80
+       }
+      ]
+     }
+    },
+    "overrides": []
+   },
+   "gridPos": {
+    "h": 17,
+    "w": 23,
+    "x": 0,
+    "y": 4
+   },
+   "id": 1,
+   "options": {
+    "legend": {
+     "calcs": [],
+     "displayMode": "list",
+     "placement": "bottom",
+     "showLegend": true
+    },
+    "tooltip": {
+     "hideZeros": false,
+     "mode": "single",
+     "sort": "none"
+    }
+   },
+   "pluginVersion": "12.1.1",
+   "targets": [
+    {
+     "alias": "#2bottom",
+     "datasource": {
+      "type": "influxdb",
+      "uid": "dfg6sxrlykidcf"
+     },
+     "groupBy": [
+      {
+       "params": [
+        "$__interval"
+       ],
+       "type": "time"
+      },
+      {
+       "params": [
+        "null"
+       ],
+       "type": "fill"
+      }
+     ],
+     "hide": false,
+     "measurement": "sensor_data",
+     "orderByTime": "ASC",
+     "policy": "default",
+     "query": "SELECT mean(\"Temp\") FROM \"sensor_data\" WHERE (\"ID\"::field = '28ffb13d33201ba') AND $timeFilter GROUP BY time($__interval) fill(null)",
+     "rawQuery": false,
+     "refId": "28ffb13d33201ba",
+     "resultFormat": "time_series",
+     "select": [
+      [
+       {
+        "params": [
+         "Temp"
+        ],
+        "type": "field"
+       },
+       {
+        "params": [],
+        "type": "mean"
+       }
+      ]
+     ],
+     "tags": [
+      {
+       "key": "ID::field",
+       "operator": "=",
+       "value": "28ffb13d33201ba"
+      }
+     ]
+    },
+    {
+     "alias": "#1bottom",
+     "datasource": {
+      "type": "influxdb",
+      "uid": "dfg6sxrlykidcf"
+     },
+     "groupBy": [
+      {
+       "params": [
+        "$__interval"
+       ],
+       "type": "time"
+      },
+      {
+       "params": [
+        "null"
+       ],
+       "type": "fill"
+      }
+     ],
+     "hide": false,
+     "measurement": "sensor_data",
+     "orderByTime": "ASC",
+     "policy": "default",
+     "refId": "28e7cc2d33201f9",
+     "resultFormat": "time_series",
+     "select": [
+      [
+       {
+        "params": [
+         "Temp"
+        ],
+        "type": "field"
+       },
+       {
+        "params": [],
+        "type": "mean"
+       }
+      ]
+     ],
+     "tags": [
+      {
+       "key": "ID::field",
+       "operator": "=",
+       "value": "28e7cc2d33201f9"
+      }
+     ]
+    },
+    {
+     "alias": "#1top",
+     "datasource": {
+      "type": "influxdb",
+      "uid": "dfg6sxrlykidcf"
+     },
+     "groupBy": [
+      {
+       "params": [
+        "$__interval"
+       ],
+       "type": "time"
+      },
+      {
+       "params": [
+        "null"
+       ],
+       "type": "fill"
+      }
+     ],
+     "hide": false,
+     "measurement": "sensor_data",
+     "orderByTime": "ASC",
+     "policy": "default",
+     "refId": "28eb4d3133201a8",
+     "resultFormat": "time_series",
+     "select": [
+      [
+       {
+        "params": [
+         "Temp"
+        ],
+        "type": "field"
+       },
+       {
+        "params": [],
+        "type": "mean"
+       }
+      ]
+     ],
+     "tags": [
+      {
+       "key": "ID::field",
+       "operator": "=",
+       "value": "28eb4d3133201a8"
+      }
+     ]
+    },
+    {
+     "alias": "#3bottom",
+     "datasource": {
+      "type": "influxdb",
+      "uid": "dfg6sxrlykidcf"
+     },
+     "groupBy": [
+      {
+       "params": [
+        "$__interval"
+       ],
+       "type": "time"
+      },
+      {
+       "params": [
+        "null"
+       ],
+       "type": "fill"
+      }
+     ],
+     "hide": false,
+     "measurement": "sensor_data",
+     "orderByTime": "ASC",
+     "policy": "default",
+     "refId": "288dc43933201fd",
+     "resultFormat": "time_series",
+     "select": [
+      [
+       {
+        "params": [
+         "Temp"
+        ],
+        "type": "field"
+       },
+       {
+        "params": [],
+        "type": "mean"
+       }
+      ]
+     ],
+     "tags": [
+      {
+       "key": "ID::field",
+       "operator": "=",
+       "value": "288dc43933201fd"
+      }
+     ]
+    },
+    {
+     "alias": "framtemp",
+     "datasource": {
+      "type": "influxdb",
+      "uid": "dfg6sxrlykidcf"
+     },
+     "groupBy": [
+      {
+       "params": [
+        "$__interval"
+       ],
+       "type": "time"
+      },
+      {
+       "params": [
+        "null"
+       ],
+       "type": "fill"
+      }
+     ],
+     "hide": false,
+     "measurement": "sensor_data",
+     "orderByTime": "ASC",
+     "policy": "default",
+     "refId": "28c5fa30332019c",
+     "resultFormat": "time_series",
+     "select": [
+      [
+       {
+        "params": [
+         "Temp"
+        ],
+        "type": "field"
+       },
+       {
+        "params": [],
+        "type": "mean"
+       }
+      ]
+     ],
+     "tags": [
+      {
+       "key": "ID::field",
+       "operator": "=",
+       "value": "28c5fa30332019c"
+      }
+     ]
+    },
+    {
+     "alias": "#3top",
+     "datasource": {
+      "type": "influxdb",
+      "uid": "dfg6sxrlykidcf"
+     },
+     "groupBy": [
+      {
+       "params": [
+        "$__interval"
+       ],
+       "type": "time"
+      },
+      {
+       "params": [
+        "null"
+       ],
+       "type": "fill"
+      }
+     ],
+     "hide": false,
+     "measurement": "sensor_data",
+     "orderByTime": "ASC",
+     "policy": "default",
+     "refId": "#3top",
+     "resultFormat": "time_series",
+     "select": [
+      [
+       {
+        "params": [
+         "Temp"
+        ],
+        "type": "field"
+       },
+       {
+        "params": [],
+        "type": "mean"
+       }
+      ]
+     ],
+     "tags": [
+      {
+       "key": "ID::field",
+       "operator": "=",
+       "value": "28ae17303320191"
+      }
+     ]
+    },
+    {
+     "alias": "#2top",
+     "datasource": {
+      "type": "influxdb",
+      "uid": "dfg6sxrlykidcf"
+     },
+     "groupBy": [
+      {
+       "params": [
+        "$__interval"
+       ],
+       "type": "time"
+      },
+      {
+       "params": [
+        "null"
+       ],
+       "type": "fill"
+      }
+     ],
+     "hide": false,
+     "measurement": "sensor_data",
+     "orderByTime": "ASC",
+     "policy": "default",
+     "query": "SELECT mean(\"Temp\") FROM \"sensor_data\" WHERE (\"ID\"::field = '288ac03833201e8') AND $timeFilter GROUP BY time($__interval) fill(null)",
+     "rawQuery": false,
+     "refId": "288ac03833201e8",
+     "resultFormat": "time_series",
+     "select": [
+      [
+       {
+        "params": [
+         "Temp"
+        ],
+        "type": "field"
+       },
+       {
+        "params": [],
+        "type": "mean"
+       }
+      ]
+     ],
+     "tags": [
+      {
+       "key": "ID::field",
+       "operator": "=",
+       "value": "288ac03833201e8"
+      }
+     ]
+    },
+    {
+     "alias": "#4bottom",
+     "datasource": {
+      "type": "influxdb",
+      "uid": "dfg6sxrlykidcf"
+     },
+     "groupBy": [
+      {
+       "params": [
+        "$__interval"
+       ],
+       "type": "time"
+      },
+      {
+       "params": [
+        "null"
+       ],
+       "type": "fill"
+      }
+     ],
+     "hide": false,
+     "measurement": "sensor_data",
+     "orderByTime": "ASC",
+     "policy": "default",
+     "query": "SELECT mean(\"Temp\") FROM \"sensor_data\" WHERE (\"ID\"::field = '28fd1a3233201d') AND $timeFilter GROUP BY time($__interval) fill(null)",
+     "rawQuery": true,
+     "refId": "A",
+     "resultFormat": "time_series",
+     "select": [
+      [
+       {
+        "params": [
+         "Temp"
+        ],
+        "type": "field"
+       },
+       {
+        "params": [],
+        "type": "mean"
+       }
+      ]
+     ],
+     "tags": [
+      {
+       "key": "ID::field",
+       "operator": "=",
+       "value": "288ac03833201e8"
+      }
+     ]
+    },
+    {
+     "alias": "#4top",
+     "datasource": {
+      "type": "influxdb",
+      "uid": "dfg6sxrlykidcf"
+     },
+     "groupBy": [
+      {
+       "params": [
+        "$__interval"
+       ],
+       "type": "time"
+      },
+      {
+       "params": [
+        "null"
+       ],
+       "type": "fill"
+      }
+     ],
+     "hide": false,
+     "measurement": "sensor_data",
+     "orderByTime": "ASC",
+     "policy": "default",
+     "query": "SELECT mean(\"Temp\") FROM \"sensor_data\" WHERE (\"ID\"::field = '28dc8d3733201eb') AND $timeFilter GROUP BY time($__interval) fill(null)",
+     "rawQuery": true,
+     "refId": "B",
+     "resultFormat": "time_series",
+     "select": [
+      [
+       {
+        "params": [
+         "Temp"
+        ],
+        "type": "field"
+       },
+       {
+        "params": [],
+        "type": "mean"
+       }
+      ]
+     ],
+     "tags": [
+      {
+       "key": "ID::field",
+       "operator": "=",
+       "value": "288ac03833201e8"
+      }
+     ]
+    }
+   ],
+   "title": "Panel Title",
+   "type": "timeseries"
+  }
+ ],
+ "preload": false,
+ "refresh": "1m",
+ "schemaVersion": 41,
+ "tags": [],
+ "templating": {
+  "list": []
+ },
+ "time": {
+  "from": "now-6h",
+  "to": "now"
+ },
+ "timepicker": {},
+ "timezone": "",
+ "title": "tanks",
+ "uid": "b1d8e556-7b60-4bd5-aeaa-f8a6cd89b06e",
+ "version": 2
+}

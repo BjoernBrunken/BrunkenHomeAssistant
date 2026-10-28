@@ -1,0 +1,1385 @@
+{
+ "annotations": {
+  "list": [
+   {
+    "builtIn": 1,
+    "datasource": {
+     "type": "grafana",
+     "uid": "-- Grafana --"
+    },
+    "enable": true,
+    "hide": true,
+    "iconColor": "rgba(0, 211, 255, 1)",
+    "name": "Annotations & Alerts",
+    "type": "dashboard"
+   }
+  ]
+ },
+ "editable": true,
+ "fiscalYearStartMonth": 0,
+ "graphTooltip": 0,
+ "id": 3186423570726912,
+ "links": [],
+ "panels": [
+  {
+   "datasource": {
+    "type": "influxdb",
+    "uid": "dfg6sxrlykidcf"
+   },
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "palette-classic"
+     },
+     "custom": {
+      "axisBorderShow": false,
+      "axisCenteredZero": false,
+      "axisColorMode": "text",
+      "axisLabel": "",
+      "axisPlacement": "auto",
+      "barAlignment": 0,
+      "barWidthFactor": 0.6,
+      "drawStyle": "line",
+      "fillOpacity": 0,
+      "gradientMode": "none",
+      "hideFrom": {
+       "legend": false,
+       "tooltip": false,
+       "viz": false
+      },
+      "insertNulls": false,
+      "lineInterpolation": "linear",
+      "lineWidth": 1,
+      "pointSize": 5,
+      "scaleDistribution": {
+       "type": "linear"
+      },
+      "showPoints": "auto",
+      "spanNulls": false,
+      "stacking": {
+       "group": "A",
+       "mode": "none"
+      },
+      "thresholdsStyle": {
+       "mode": "off"
+      }
+     },
+     "mappings": [],
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "green",
+        "value": 0
+       },
+       {
+        "color": "red",
+        "value": 80
+       }
+      ]
+     }
+    },
+    "overrides": []
+   },
+   "gridPos": {
+    "h": 8,
+    "w": 12,
+    "x": 0,
+    "y": 0
+   },
+   "id": 15,
+   "options": {
+    "legend": {
+     "calcs": [],
+     "displayMode": "list",
+     "placement": "bottom",
+     "showLegend": true
+    },
+    "tooltip": {
+     "hideZeros": false,
+     "mode": "single",
+     "sort": "none"
+    }
+   },
+   "pluginVersion": "12.1.1",
+   "targets": [
+    {
+     "datasource": {
+      "type": "influxdb",
+      "uid": "dfg6sxrlykidcf"
+     },
+     "query": "SELECT mean(\"temp_value\") FROM \"sensor_data\" WHERE $timeFilter GROUP BY time($__interval) fill(linear)",
+     "rawQuery": true,
+     "refId": "A",
+     "resultFormat": "time_series"
+    }
+   ],
+   "title": "New panel",
+   "type": "timeseries"
+  },
+  {
+   "datasource": {
+    "type": "influxdb",
+    "uid": "dfg6sxrlykidcf"
+   },
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "thresholds"
+     },
+     "mappings": [],
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "green",
+        "value": 0
+       },
+       {
+        "color": "red",
+        "value": 80
+       }
+      ]
+     }
+    },
+    "overrides": []
+   },
+   "gridPos": {
+    "h": 8,
+    "w": 12,
+    "x": 0,
+    "y": 0
+   },
+   "id": 14,
+   "options": {
+    "colorMode": "value",
+    "graphMode": "area",
+    "justifyMode": "auto",
+    "orientation": "auto",
+    "percentChangeColorMode": "standard",
+    "reduceOptions": {
+     "calcs": [
+      "lastNotNull"
+     ],
+     "fields": "",
+     "values": false
+    },
+    "showPercentChange": false,
+    "textMode": "auto",
+    "wideLayout": true
+   },
+   "pluginVersion": "12.1.1",
+   "targets": [
+    {
+     "datasource": {
+      "type": "influxdb",
+      "uid": "dfg6sxrlykidcf"
+     },
+     "groupBy": [],
+     "measurement": "sensor_data",
+     "orderByTime": "ASC",
+     "policy": "default",
+     "query": "SELECT last(\"temp_value\") FROM \"sensor_data\" WHERE $timeFilter GROUP BY time($__interval) fill(previous)",
+     "rawQuery": true,
+     "refId": "A",
+     "resultFormat": "time_series",
+     "select": [
+      [
+       {
+        "params": [
+         "temp_value"
+        ],
+        "type": "field"
+       }
+      ]
+     ],
+     "tags": [
+      {
+       "key": "Sensor::tag",
+       "operator": "=",
+       "value": "MainHouse-Temp_out-1"
+      }
+     ]
+    }
+   ],
+   "title": "New panel",
+   "type": "stat"
+  },
+  {
+   "datasource": {
+    "type": "influxdb",
+    "uid": "dfg6sxrlykidcf"
+   },
+   "description": "Ute",
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "thresholds"
+     },
+     "mappings": [],
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "green",
+        "value": 0
+       },
+       {
+        "color": "red",
+        "value": 80
+       }
+      ]
+     },
+     "unit": "celsius"
+    },
+    "overrides": []
+   },
+   "gridPos": {
+    "h": 4,
+    "w": 4,
+    "x": 17,
+    "y": 0
+   },
+   "id": 5,
+   "options": {
+    "colorMode": "value",
+    "graphMode": "none",
+    "justifyMode": "auto",
+    "orientation": "auto",
+    "percentChangeColorMode": "standard",
+    "reduceOptions": {
+     "calcs": [
+      "lastNotNull"
+     ],
+     "fields": "",
+     "values": false
+    },
+    "showPercentChange": false,
+    "text": {},
+    "textMode": "auto",
+    "wideLayout": true
+   },
+   "pluginVersion": "12.1.1",
+   "targets": [
+    {
+     "datasource": {
+      "type": "influxdb",
+      "uid": "dfg6sxrlykidcf"
+     },
+     "groupBy": [
+      {
+       "params": [
+        "$__interval"
+       ],
+       "type": "time"
+      },
+      {
+       "params": [
+        "null"
+       ],
+       "type": "fill"
+      }
+     ],
+     "measurement": "sensor_data",
+     "orderByTime": "ASC",
+     "policy": "default",
+     "query": "SELECT mean(\"TempOut\") FROM \"sensor_data\" WHERE (\"Sensor\"::field = '033e60bbf6e6') AND $timeFilter GROUP BY time($__interval) fill(null)",
+     "rawQuery": true,
+     "refId": "A",
+     "resultFormat": "time_series",
+     "select": [
+      [
+       {
+        "params": [
+         "TempOut"
+        ],
+        "type": "field"
+       },
+       {
+        "params": [],
+        "type": "mean"
+       }
+      ]
+     ],
+     "tags": [
+      {
+       "key": "Sensor::field",
+       "operator": "=",
+       "value": "033e60bbf6e6"
+      }
+     ]
+    }
+   ],
+   "title": "Temp inne",
+   "type": "stat"
+  },
+  {
+   "datasource": {
+    "type": "influxdb",
+    "uid": "dfg6sxrlykidcf"
+   },
+   "description": "Inne",
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "thresholds"
+     },
+     "mappings": [],
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "green",
+        "value": 0
+       },
+       {
+        "color": "red",
+        "value": 80
+       }
+      ]
+     },
+     "unit": "percent"
+    },
+    "overrides": []
+   },
+   "gridPos": {
+    "h": 4,
+    "w": 3,
+    "x": 21,
+    "y": 0
+   },
+   "id": 6,
+   "options": {
+    "colorMode": "value",
+    "graphMode": "none",
+    "justifyMode": "center",
+    "orientation": "auto",
+    "percentChangeColorMode": "standard",
+    "reduceOptions": {
+     "calcs": [
+      "lastNotNull"
+     ],
+     "fields": "",
+     "values": false
+    },
+    "showPercentChange": false,
+    "text": {},
+    "textMode": "auto",
+    "wideLayout": true
+   },
+   "pluginVersion": "12.1.1",
+   "targets": [
+    {
+     "datasource": {
+      "type": "influxdb",
+      "uid": "dfg6sxrlykidcf"
+     },
+     "groupBy": [
+      {
+       "params": [
+        "$__interval"
+       ],
+       "type": "time"
+      },
+      {
+       "params": [
+        "null"
+       ],
+       "type": "fill"
+      }
+     ],
+     "measurement": "sensor_data",
+     "orderByTime": "ASC",
+     "policy": "default",
+     "refId": "A",
+     "resultFormat": "time_series",
+     "select": [
+      [
+       {
+        "params": [
+         "Humidity"
+        ],
+        "type": "field"
+       },
+       {
+        "params": [],
+        "type": "mean"
+       }
+      ]
+     ],
+     "tags": [
+      {
+       "key": "Sensor::field",
+       "operator": "=",
+       "value": "033e60bbf6e6"
+      }
+     ]
+    }
+   ],
+   "title": "Luftfuktighet",
+   "type": "stat"
+  },
+  {
+   "datasource": {
+    "type": "datasource",
+    "uid": "grafana"
+   },
+   "gridPos": {
+    "h": 8,
+    "w": 12,
+    "x": 0,
+    "y": 8
+   },
+   "id": 13,
+   "options": {
+    "bgColor": "",
+    "clockType": "24 hour",
+    "dateSettings": {
+     "dateFormat": "dddd, D. MMMM YYYY",
+     "fontSize": "20px",
+     "fontWeight": "normal",
+     "locale": "",
+     "showDate": true
+    },
+    "fontMono": false,
+    "mode": "time",
+    "refresh": "sec",
+    "style": "text",
+    "timeSettings": {
+     "customFormat": "HH:mm:ss",
+     "fontSize": "80px",
+     "fontWeight": "normal"
+    },
+    "timezone": "Europe/Stockholm",
+    "timezoneSettings": {
+     "fontSize": "12px",
+     "fontWeight": "normal",
+     "showTimezone": false,
+     "zoneFormat": "offsetAbbv"
+    }
+   },
+   "targets": [
+    {
+     "datasource": {
+      "type": "datasource",
+      "uid": "grafana"
+     },
+     "queryType": "randomWalk",
+     "refId": "A"
+    }
+   ],
+   "title": "",
+   "transparent": false,
+   "type": "grafana-clock-panel"
+  },
+  {
+   "fieldConfig": {
+    "defaults": {},
+    "overrides": []
+   },
+   "gridPos": {
+    "h": 8,
+    "w": 12,
+    "x": 0,
+    "y": 16
+   },
+   "id": 12,
+   "options": {
+    "code": {
+     "language": "plaintext",
+     "showLineNumbers": false,
+     "showMiniMap": false
+    },
+    "content": "<h2>🌤 Wetter & Sonnenzeiten</h2>\n<iframe src=\"https://wttr.in/Ramvik?format=3\" width=\"100%\" height=\"30\" frameborder=\"0\"></iframe>\n<iframe src=\"https://wttr.in/Ramvik?format=%20🌅%20Sunrise:%20%t\\n🌇%20Sunset:%20%T\" width=\"100%\" height=\"40\" frameborder=\"0\"></iframe>\n<h2 id=\"timeDisplay\">🕒 Lade Uhrzeit...</h2>\n<script>\n  function updateClock() {\n    const now = new Date();\n    document.getElementById(\"timeDisplay\").innerText = \"🕒 Aktuell: \" + now.toLocaleTimeString();\n  }\n  setInterval(updateClock, 1000);\n  updateClock();\n</script>\n",
+    "mode": "html"
+   },
+   "pluginVersion": "12.1.1",
+   "title": "Uhrzeit",
+   "type": "text"
+  },
+  {
+   "datasource": {
+    "type": "influxdb",
+    "uid": "dfg6sxrlykidcf"
+   },
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "thresholds"
+     },
+     "mappings": [],
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "green",
+        "value": 0
+       },
+       {
+        "color": "red",
+        "value": 80
+       }
+      ]
+     },
+     "unit": "celsius"
+    },
+    "overrides": []
+   },
+   "gridPos": {
+    "h": 3,
+    "w": 2,
+    "x": 0,
+    "y": 24
+   },
+   "id": 9,
+   "options": {
+    "colorMode": "value",
+    "graphMode": "area",
+    "justifyMode": "auto",
+    "orientation": "auto",
+    "percentChangeColorMode": "standard",
+    "reduceOptions": {
+     "calcs": [
+      "max"
+     ],
+     "fields": "",
+     "values": false
+    },
+    "showPercentChange": false,
+    "textMode": "auto",
+    "wideLayout": true
+   },
+   "pluginVersion": "12.1.1",
+   "targets": [
+    {
+     "alias": "max",
+     "datasource": {
+      "type": "influxdb",
+      "uid": "dfg6sxrlykidcf"
+     },
+     "groupBy": [
+      {
+       "params": [
+        "$__interval"
+       ],
+       "type": "time"
+      },
+      {
+       "params": [
+        "null"
+       ],
+       "type": "fill"
+      }
+     ],
+     "measurement": "sensor_data",
+     "orderByTime": "ASC",
+     "policy": "default",
+     "query": "SELECT mean(\"TempOut\") FROM \"sensor_data\" WHERE (\"Sensor\"::field = '0351d38153d6') AND $timeFilter GROUP BY time($__interval) fill(null)",
+     "rawQuery": false,
+     "refId": "A",
+     "resultFormat": "time_series",
+     "select": [
+      [
+       {
+        "params": [
+         "TempOut"
+        ],
+        "type": "field"
+       },
+       {
+        "params": [],
+        "type": "mean"
+       }
+      ]
+     ],
+     "tags": [
+      {
+       "key": "Sensor::field",
+       "operator": "=",
+       "value": "0351d38153d6"
+      }
+     ]
+    }
+   ],
+   "title": "max temp",
+   "type": "stat"
+  },
+  {
+   "datasource": {
+    "type": "influxdb",
+    "uid": "dfg6sxrlykidcf"
+   },
+   "description": "Ute",
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "thresholds"
+     },
+     "mappings": [],
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "green",
+        "value": 0
+       },
+       {
+        "color": "red",
+        "value": 80
+       }
+      ]
+     },
+     "unit": "percent"
+    },
+    "overrides": []
+   },
+   "gridPos": {
+    "h": 4,
+    "w": 3,
+    "x": 6,
+    "y": 24
+   },
+   "id": 4,
+   "options": {
+    "colorMode": "value",
+    "graphMode": "none",
+    "justifyMode": "center",
+    "orientation": "auto",
+    "percentChangeColorMode": "standard",
+    "reduceOptions": {
+     "calcs": [
+      "lastNotNull"
+     ],
+     "fields": "",
+     "values": false
+    },
+    "showPercentChange": false,
+    "text": {},
+    "textMode": "auto",
+    "wideLayout": true
+   },
+   "pluginVersion": "12.1.1",
+   "targets": [
+    {
+     "datasource": {
+      "type": "influxdb",
+      "uid": "dfg6sxrlykidcf"
+     },
+     "groupBy": [
+      {
+       "params": [
+        "$__interval"
+       ],
+       "type": "time"
+      },
+      {
+       "params": [
+        "null"
+       ],
+       "type": "fill"
+      }
+     ],
+     "measurement": "sensor_data",
+     "orderByTime": "ASC",
+     "policy": "default",
+     "refId": "A",
+     "resultFormat": "time_series",
+     "select": [
+      [
+       {
+        "params": [
+         "Humidity"
+        ],
+        "type": "field"
+       },
+       {
+        "params": [],
+        "type": "mean"
+       }
+      ]
+     ],
+     "tags": [
+      {
+       "key": "Sensor::field",
+       "operator": "=",
+       "value": "0351d38153d6"
+      }
+     ]
+    }
+   ],
+   "title": "Luftfuktighet",
+   "type": "stat"
+  },
+  {
+   "datasource": {
+    "type": "influxdb",
+    "uid": "dfg6sxrlykidcf"
+   },
+   "description": "Ute",
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "thresholds"
+     },
+     "mappings": [],
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "green",
+        "value": 0
+       },
+       {
+        "color": "red",
+        "value": 80
+       }
+      ]
+     },
+     "unit": "celsius"
+    },
+    "overrides": []
+   },
+   "gridPos": {
+    "h": 4,
+    "w": 3,
+    "x": 9,
+    "y": 24
+   },
+   "id": 7,
+   "options": {
+    "colorMode": "value",
+    "graphMode": "none",
+    "justifyMode": "center",
+    "orientation": "auto",
+    "percentChangeColorMode": "standard",
+    "reduceOptions": {
+     "calcs": [
+      "lastNotNull"
+     ],
+     "fields": "",
+     "values": false
+    },
+    "showPercentChange": false,
+    "text": {},
+    "textMode": "auto",
+    "wideLayout": true
+   },
+   "pluginVersion": "12.1.1",
+   "targets": [
+    {
+     "datasource": {
+      "type": "influxdb",
+      "uid": "dfg6sxrlykidcf"
+     },
+     "groupBy": [
+      {
+       "params": [
+        "$__interval"
+       ],
+       "type": "time"
+      },
+      {
+       "params": [
+        "null"
+       ],
+       "type": "fill"
+      }
+     ],
+     "measurement": "sensor_data",
+     "orderByTime": "ASC",
+     "policy": "default",
+     "refId": "A",
+     "resultFormat": "time_series",
+     "select": [
+      [
+       {
+        "params": [
+         "Temp"
+        ],
+        "type": "field"
+       },
+       {
+        "params": [],
+        "type": "mean"
+       }
+      ]
+     ],
+     "tags": [
+      {
+       "key": "ID::field",
+       "operator": "=",
+       "value": "28ffb13d33201ba"
+      }
+     ]
+    }
+   ],
+   "title": "Tank#1",
+   "type": "stat"
+  },
+  {
+   "datasource": {
+    "type": "influxdb",
+    "uid": "dfg6sxrlykidcf"
+   },
+   "description": "",
+   "fieldConfig": {
+    "defaults": {},
+    "overrides": []
+   },
+   "gridPos": {
+    "h": 7,
+    "w": 4,
+    "x": 0,
+    "y": 27
+   },
+   "id": 8,
+   "maxDataPoints": 3,
+   "options": {},
+   "pluginVersion": "12.1.1",
+   "targets": [
+    {
+     "refId": "A"
+    }
+   ],
+   "title": "",
+   "type": "aidanmountford-html-panel"
+  },
+  {
+   "datasource": {
+    "type": "influxdb",
+    "uid": "dfg6sxrlykidcf"
+   },
+   "description": "Ute",
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "thresholds"
+     },
+     "decimals": 1,
+     "mappings": [],
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "green",
+        "value": 0
+       },
+       {
+        "color": "red",
+        "value": 80
+       }
+      ]
+     },
+     "unit": "celsius"
+    },
+    "overrides": []
+   },
+   "gridPos": {
+    "h": 4,
+    "w": 4,
+    "x": 7,
+    "y": 28
+   },
+   "id": 11,
+   "options": {
+    "colorMode": "value",
+    "graphMode": "none",
+    "justifyMode": "auto",
+    "orientation": "auto",
+    "percentChangeColorMode": "standard",
+    "reduceOptions": {
+     "calcs": [
+      "mean"
+     ],
+     "fields": "",
+     "values": false
+    },
+    "showPercentChange": false,
+    "text": {},
+    "textMode": "auto",
+    "wideLayout": true
+   },
+   "pluginVersion": "12.1.1",
+   "targets": [
+    {
+     "datasource": {
+      "type": "influxdb",
+      "uid": "dfg6sxrlykidcf"
+     },
+     "groupBy": [
+      {
+       "params": [
+        "$__interval"
+       ],
+       "type": "time"
+      },
+      {
+       "params": [
+        "null"
+       ],
+       "type": "fill"
+      }
+     ],
+     "measurement": "sensor_data",
+     "orderByTime": "ASC",
+     "policy": "default",
+     "refId": "A",
+     "resultFormat": "time_series",
+     "select": [
+      [
+       {
+        "params": [
+         "TempOut"
+        ],
+        "type": "field"
+       },
+       {
+        "params": [],
+        "type": "mean"
+       }
+      ]
+     ],
+     "tags": [
+      {
+       "key": "Sensor::field",
+       "operator": "=",
+       "value": "0351d38153d6"
+      }
+     ]
+    }
+   ],
+   "timeFrom": "5d",
+   "title": "Medeltemp",
+   "type": "stat"
+  },
+  {
+   "datasource": {
+    "type": "influxdb",
+    "uid": "dfg6sxrlykidcf"
+   },
+   "description": "",
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "thresholds"
+     },
+     "decimals": 1,
+     "mappings": [],
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "green",
+        "value": 0
+       },
+       {
+        "color": "red",
+        "value": 80
+       }
+      ]
+     },
+     "unit": "l/m²"
+    },
+    "overrides": []
+   },
+   "gridPos": {
+    "h": 4,
+    "w": 4,
+    "x": 11,
+    "y": 28
+   },
+   "id": 10,
+   "options": {
+    "colorMode": "value",
+    "graphMode": "none",
+    "justifyMode": "auto",
+    "orientation": "auto",
+    "percentChangeColorMode": "standard",
+    "reduceOptions": {
+     "calcs": [
+      "lastNotNull"
+     ],
+     "fields": "",
+     "values": false
+    },
+    "showPercentChange": false,
+    "text": {},
+    "textMode": "auto",
+    "wideLayout": true
+   },
+   "pluginVersion": "12.1.1",
+   "targets": [
+    {
+     "datasource": {
+      "type": "influxdb",
+      "uid": "dfg6sxrlykidcf"
+     },
+     "groupBy": [
+      {
+       "params": [
+        "$__interval"
+       ],
+       "type": "time"
+      },
+      {
+       "params": [
+        "null"
+       ],
+       "type": "fill"
+      }
+     ],
+     "measurement": "sensor_data",
+     "orderByTime": "ASC",
+     "policy": "default",
+     "query": "SELECT mean(\"TempOut\") FROM \"sensor_data\" WHERE (\"Sensor\"::field = '08396a64b798') AND $timeFilter GROUP BY time($__interval) fill(null)",
+     "rawQuery": false,
+     "refId": "A",
+     "resultFormat": "time_series",
+     "select": [
+      [
+       {
+        "params": [
+         "RainVolume"
+        ],
+        "type": "field"
+       },
+       {
+        "params": [],
+        "type": "sum"
+       }
+      ]
+     ],
+     "tags": [
+      {
+       "key": "Sensor::field",
+       "operator": "=",
+       "value": "08396a64b798"
+      }
+     ]
+    }
+   ],
+   "timeFrom": "1h",
+   "title": "Regn",
+   "type": "stat"
+  },
+  {
+   "datasource": {
+    "type": "influxdb",
+    "uid": "dfg6sxrlykidcf"
+   },
+   "description": "Ute",
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "thresholds"
+     },
+     "mappings": [],
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "green",
+        "value": 0
+       },
+       {
+        "color": "red",
+        "value": 80
+       }
+      ]
+     },
+     "unit": "celsius"
+    },
+    "overrides": []
+   },
+   "gridPos": {
+    "h": 4,
+    "w": 6,
+    "x": 0,
+    "y": 34
+   },
+   "id": 3,
+   "options": {
+    "colorMode": "value",
+    "graphMode": "none",
+    "justifyMode": "auto",
+    "orientation": "auto",
+    "percentChangeColorMode": "standard",
+    "reduceOptions": {
+     "calcs": [
+      "lastNotNull"
+     ],
+     "fields": "",
+     "values": false
+    },
+    "showPercentChange": false,
+    "text": {},
+    "textMode": "auto",
+    "wideLayout": true
+   },
+   "pluginVersion": "12.1.1",
+   "targets": [
+    {
+     "datasource": {
+      "type": "influxdb",
+      "uid": "dfg6sxrlykidcf"
+     },
+     "groupBy": [
+      {
+       "params": [
+        "$__interval"
+       ],
+       "type": "time"
+      },
+      {
+       "params": [
+        "null"
+       ],
+       "type": "fill"
+      }
+     ],
+     "measurement": "sensor_data",
+     "orderByTime": "ASC",
+     "policy": "default",
+     "query": "SELECT mean(\"TempOut\") FROM \"sensor_data\" WHERE (\"Sensor\"::field = '032AB291BCAE') AND $timeFilter GROUP BY time($__interval) fill(null)",
+     "rawQuery": false,
+     "refId": "A",
+     "resultFormat": "time_series",
+     "select": [
+      [
+       {
+        "params": [
+         "TempOut"
+        ],
+        "type": "field"
+       },
+       {
+        "params": [],
+        "type": "mean"
+       }
+      ]
+     ],
+     "tags": [
+      {
+       "key": "Sensor::tag",
+       "operator": "=",
+       "value": "MainHouse-Temp_out-1"
+      }
+     ]
+    }
+   ],
+   "title": "Temp ute",
+   "type": "stat"
+  },
+  {
+   "datasource": {
+    "type": "influxdb",
+    "uid": "dfg6sxrlykidcf"
+   },
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "palette-classic"
+     },
+     "custom": {
+      "axisBorderShow": false,
+      "axisCenteredZero": false,
+      "axisColorMode": "text",
+      "axisLabel": "Tryck",
+      "axisPlacement": "auto",
+      "barAlignment": 0,
+      "barWidthFactor": 0.6,
+      "drawStyle": "line",
+      "fillOpacity": 9,
+      "gradientMode": "hue",
+      "hideFrom": {
+       "legend": false,
+       "tooltip": false,
+       "viz": false
+      },
+      "insertNulls": false,
+      "lineInterpolation": "smooth",
+      "lineStyle": {
+       "fill": "solid"
+      },
+      "lineWidth": 2,
+      "pointSize": 5,
+      "scaleDistribution": {
+       "type": "linear"
+      },
+      "showPoints": "auto",
+      "spanNulls": true,
+      "stacking": {
+       "group": "A",
+       "mode": "none"
+      },
+      "thresholdsStyle": {
+       "mode": "off"
+      }
+     },
+     "mappings": [],
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "green",
+        "value": 0
+       },
+       {
+        "color": "red",
+        "value": 80
+       }
+      ]
+     }
+    },
+    "overrides": [
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "tryck"
+      },
+      "properties": [
+       {
+        "id": "custom.axisPlacement",
+        "value": "right"
+       }
+      ]
+     }
+    ]
+   },
+   "gridPos": {
+    "h": 14,
+    "w": 24,
+    "x": 0,
+    "y": 38
+   },
+   "id": 1,
+   "options": {
+    "legend": {
+     "calcs": [],
+     "displayMode": "list",
+     "placement": "bottom",
+     "showLegend": true
+    },
+    "tooltip": {
+     "hideZeros": false,
+     "mode": "single",
+     "sort": "none"
+    }
+   },
+   "pluginVersion": "12.1.1",
+   "targets": [
+    {
+     "alias": "tryck",
+     "datasource": {
+      "type": "influxdb",
+      "uid": "dfg6sxrlykidcf"
+     },
+     "groupBy": [
+      {
+       "params": [
+        "$__interval"
+       ],
+       "type": "time"
+      },
+      {
+       "params": [
+        "null"
+       ],
+       "type": "fill"
+      }
+     ],
+     "measurement": "sensor_data",
+     "orderByTime": "ASC",
+     "policy": "default",
+     "refId": "A",
+     "resultFormat": "time_series",
+     "select": [
+      [
+       {
+        "params": [
+         "pressure"
+        ],
+        "type": "field"
+       },
+       {
+        "params": [],
+        "type": "mean"
+       }
+      ]
+     ],
+     "tags": []
+    },
+    {
+     "alias": "temp",
+     "datasource": {
+      "type": "influxdb",
+      "uid": "dfg6sxrlykidcf"
+     },
+     "groupBy": [
+      {
+       "params": [
+        "$__interval"
+       ],
+       "type": "time"
+      },
+      {
+       "params": [
+        "null"
+       ],
+       "type": "fill"
+      }
+     ],
+     "hide": false,
+     "measurement": "sensor_data",
+     "orderByTime": "ASC",
+     "policy": "default",
+     "query": "SELECT mean(\"TempOut\") FROM \"sensor_data\" WHERE (\"Sensor\"::field = '0351d38153d6') AND $timeFilter GROUP BY time($__interval) fill(null)",
+     "rawQuery": true,
+     "refId": "B",
+     "resultFormat": "time_series",
+     "select": [
+      [
+       {
+        "params": [
+         "TempOut"
+        ],
+        "type": "field"
+       },
+       {
+        "params": [],
+        "type": "mean"
+       }
+      ]
+     ],
+     "tags": [
+      {
+       "key": "Sensor::field",
+       "operator": "=",
+       "value": "0351d38153d6"
+      }
+     ]
+    }
+   ],
+   "title": "Temp tryck",
+   "type": "timeseries"
+  }
+ ],
+ "preload": false,
+ "refresh": "1m",
+ "schemaVersion": 41,
+ "tags": [],
+ "templating": {
+  "list": []
+ },
+ "time": {
+  "from": "now-6h",
+  "to": "now"
+ },
+ "timepicker": {
+  "hidden": true
+ },
+ "timezone": "",
+ "title": "Weather test",
+ "uid": "df4b0959-6e77-4caf-b700-61df6968ae7d",
+ "version": 4
+}

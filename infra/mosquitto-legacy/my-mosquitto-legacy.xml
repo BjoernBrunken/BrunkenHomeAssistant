@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>mosquitto-legacy</Name>
+  <Repository>eclipse-mosquitto:2</Repository>
+  <Registry>https://hub.docker.com/_/eclipse-mosquitto</Registry>
+  <Network>br0</Network>
+  <MyIP>192.168.68.66</MyIP>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Overview>Legacy-MQTT-Broker auf der alten Pi-IP 192.168.68.66, Bridge zum Haupt-Broker 192.168.68.100</Overview>
+  <Category>HomeAutomation:</Category>
+  <WebUI/>
+  <Icon>https://raw.githubusercontent.com/simonsickle/unraid-templates/main/mosquitto/logo.png</Icon>
+  <ExtraParams>--restart=unless-stopped --mac-address 02:42:c0:a8:44:42</ExtraParams>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled>1793174811</DateInstalled>
+  <Config Name="config" Target="/mosquitto/config" Default="/mnt/user/appdata/mosquitto-legacy/config" Mode="rw" Description="mosquitto.conf mit Bridge" Type="Path" Display="advanced" Required="false" Mask="false">/mnt/cache/appdata/mosquitto-legacy/config</Config>
+</Container>

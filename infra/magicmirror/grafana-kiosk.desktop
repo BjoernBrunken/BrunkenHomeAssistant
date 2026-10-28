@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Grafana Kiosk
+Comment=WeatherMore (unraid Grafana, oeffentliche Freigabe) im Firefox-Kiosk. Ersetzt MagicMirror (pm2 "mm" gestoppt, zurueck mit: pm2 start mm && pm2 save)
+Exec=/home/pi/grafana-kiosk.sh
+X-GNOME-Autostart-enabled=true
+Hidden=false
