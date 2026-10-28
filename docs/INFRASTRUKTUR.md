@@ -64,13 +64,13 @@ Zigbee-Geräte ──► zigbee2mqtt ──► mosquitto (.100) ─────�
 | `MobileAlerts/0933fcd67fd3/json` | TFA „Heizung“ | `temperatureExt` = **Kesseltemperatur**, `temperature`/`humidity` = Heizraum |
 | `MobileAlerts/033e60bbf6e6/json` | TFA Küche | Temperatur, Luftfeuchte |
 | `MobileAlerts/032ab291bcae/json` | TFA | Temperatur, Luftfeuchte |
-| `MobileAlerts/08396a64b798/json` | TFA Regen | Regenzähler |
+| `MobileAlerts/08396a64b798/json` | TFA Regen (MA10650) | `eventCounter` = Kippungen seit Batteriewechsel |
 | `zigbee2mqtt/MainHouse-Temp_out-1` | Zigbee | Außentemperatur |
 
 ### InfluxDB `sensor_data`
 
 - Measurement `sensor_data`, Retention-Policy **`autogen` (unbegrenzt)**, einzige Policy (`two_years` am 28.10.2026 gelöscht).
-- Felder: `Temp`/`ID` (Akkutanks, Spa), `TempOut`/`Humidity`/`Sensor` (TFA), `RainVolume`, `pressure` (Pa), `temp_value` + Tag `Sensor` (Außentemperatur Zigbee).
+- Felder: `Temp`/`ID` (Akkutanks, Spa), `TempOut`/`Humidity`/`Sensor` (TFA), `RainCounter`/`RainMM` (Regen, seit 28.10.2026), `RainVolume` (alt, ungenau), `pressure` (Pa), `temp_value` + Tag `Sensor` (Außentemperatur Zigbee).
 - `Sensor` gibt es als Feld **und** als Tag → in Abfragen `"Sensor"::field` verwenden.
 - Historie vom Pi seit **14.08.2023** übernommen (bis 28.10.2026 09:00 UTC).
 - Backups: `appdata/influx-backup/` (`unraid-2026-10-28-1030`, `pi-2026-10-28`).
@@ -84,6 +84,16 @@ Zigbee-Geräte ──► zigbee2mqtt ──► mosquitto (.100) ─────�
 - Ausgenommen: Immich-Vorschaubilder und umgewandelte Videos (`immich/library/thumbs`, `encoded-video`, ~45 GB, regenerierbar). Die Fotos selbst liegen auf der Synology (`/volume1/photo`).
 - Zusätzlich gesichert: `appdata/maserver` (Quellcode/Konfig des MobileAlerts-Images, hat kein Volume).
 - Eine Sicherung ist ca. 2 GB groß. Wiederherstellen: unraid → Settings → Appdata Backup → Restore.
+
+---
+
+## Regenmesser
+
+- MobileAlerts MA10650: zählt die Kippungen einer Wippe (`eventCounter`, kumuliert seit Batteriewechsel, 16 Bit).
+- Node-RED-Funktion „Regen: Zähler -> mm“ schreibt `RainCounter` (Rohwert) und `RainMM` (Regen seit der letzten Nachricht). Batteriewechsel/Überlauf werden erkannt. Der letzte Zählerstand liegt im persistenten Node-RED-Kontext (`contextStorage` „file“ in `nodered/settings.js`).
+- **Kalibriert am 28.10.2026:** 100 ml (= 10 mm auf 100 cm²) → 27 Kippungen + Rest → **0,364 mm pro Kippung** (Herstellerangabe 0,258 mm misst ~30 % zu wenig).
+- Grafana „Regn“-Kacheln = Summe `RainMM` über den Zeitraum. Alte Werte (`RainVolume`, immer 0,258 je Nachricht) sind unbrauchbar und werden nicht angezeigt.
+- Schnee/Hagel werden nicht gemessen (Trichter unbeheizt).
 
 ---
 

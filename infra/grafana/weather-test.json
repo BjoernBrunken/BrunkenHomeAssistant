@@ -957,7 +957,7 @@
     "type": "influxdb",
     "uid": "dfg6sxrlykidcf"
    },
-   "description": "",
+   "description": "Niederschlag aus dem Zählerstand des MobileAlerts-Regenmessers, kalibriert auf 0,364 mm pro Kippung (28.10.2026). Werte vor dem 28.10.2026 (Feld RainVolume) sind ungenau und werden hier nicht verwendet.",
    "fieldConfig": {
     "defaults": {
      "color": {
@@ -965,20 +965,21 @@
      },
      "decimals": 1,
      "mappings": [],
+     "noValue": "0 mm",
      "thresholds": {
       "mode": "absolute",
       "steps": [
        {
-        "color": "green",
-        "value": 0
+        "color": "text",
+        "value": null
        },
        {
-        "color": "red",
-        "value": 80
+        "color": "blue",
+        "value": 0.1
        }
       ]
      },
-     "unit": "l/m²"
+     "unit": "lengthmm"
     },
     "overrides": []
    },
@@ -997,7 +998,7 @@
     "percentChangeColorMode": "standard",
     "reduceOptions": {
      "calcs": [
-      "lastNotNull"
+      "sum"
      ],
      "fields": "",
      "values": false
@@ -1014,52 +1015,14 @@
       "type": "influxdb",
       "uid": "dfg6sxrlykidcf"
      },
-     "groupBy": [
-      {
-       "params": [
-        "$__interval"
-       ],
-       "type": "time"
-      },
-      {
-       "params": [
-        "null"
-       ],
-       "type": "fill"
-      }
-     ],
-     "measurement": "sensor_data",
-     "orderByTime": "ASC",
-     "policy": "default",
-     "query": "SELECT mean(\"TempOut\") FROM \"sensor_data\" WHERE (\"Sensor\"::field = '08396a64b798') AND $timeFilter GROUP BY time($__interval) fill(null)",
-     "rawQuery": false,
+     "query": "SELECT sum(\"RainMM\") FROM \"sensor_data\" WHERE $timeFilter",
+     "rawQuery": true,
      "refId": "A",
-     "resultFormat": "time_series",
-     "select": [
-      [
-       {
-        "params": [
-         "RainVolume"
-        ],
-        "type": "field"
-       },
-       {
-        "params": [],
-        "type": "sum"
-       }
-      ]
-     ],
-     "tags": [
-      {
-       "key": "Sensor::field",
-       "operator": "=",
-       "value": "08396a64b798"
-      }
-     ]
+     "resultFormat": "time_series"
     }
    ],
    "timeFrom": "1h",
-   "title": "Regn",
+   "title": "Regn senaste timmen",
    "type": "stat"
   },
   {
@@ -1381,5 +1344,5 @@
  "timezone": "",
  "title": "Weather test",
  "uid": "df4b0959-6e77-4caf-b700-61df6968ae7d",
- "version": 4
+ "version": 6
 }
