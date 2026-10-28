@@ -142,3 +142,75 @@
   metadata:
     light.kuche_gesamt:
       entity_only: true
+- id: '1792000000004'
+  name: Bad Pfirsich
+  entities:
+    light.mainhouse_bath_grp:
+      state: 'on'
+      brightness: 77
+      rgb_color:
+      - 255
+      - 209
+      - 173
+  icon: mdi:lightbulb-group
+- id: '1792000000006'
+  name: Bad Apricot
+  entities:
+    light.mainhouse_bath_grp:
+      state: 'on'
+      brightness: 77
+      rgb_color:
+      - 255
+      - 196
+      - 173
+  icon: mdi:lightbulb-group
+- id: '1792000000008'
+  name: Bad Himmelblau
+  entities:
+    light.mainhouse_bath_grp:
+      state: 'on'
+      brightness: 77
+      rgb_color:
+      - 135
+      - 206
+      - 250
+  icon: mdi:lightbulb-group
+- id: '1792000000005'
+  name: Bad Warmweiß
+  entities:
+    light.mainhouse_bath_grp:
+      state: 'on'
+      brightness: 77
+      rgb_color:
+      - 255
+      - 224
+      - 194
+  icon: mdi:lightbulb-group
+- id: '1792000000007'
+  name: Bad Rosé
+  entities:
+    light.mainhouse_bath_grp:
+      state: 'on'
+      brightness: 77
+      rgb_color:
+      - 255
+      - 182
+      - 193
+  icon: mdi:lightbulb-group
+- id: '1792000000009'
+  name: Küche Dunkler Tag
+  entities:
+    light.mainhouse_kitchen_grp:
+      state: 'on'
+      brightness: 77
+      rgb_color:
+      - 255
+      - 209
+      - 138
+    light.0x348d13fffe79ffcf:
+      state: 'on'
+      brightness: 77
+    light.0xf0fd45fffef852a6:
+      state: 'on'
+      brightness: 77
+  icon: mdi:weather-cloudy

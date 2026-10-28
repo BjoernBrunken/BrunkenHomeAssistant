@@ -1,240 +1,294 @@
 kuche_szene_wechseln:
   alias: Küche Szene wechseln
   sequence:
-    - choose:
-        - conditions:
-            - condition: state
-              entity_id: input_select.kuche_szene
-              state: "kochen"
-          sequence:
-            - action: input_select.select_option
-              target:
-                entity_id: input_select.kuche_szene
-              data:
-                option: "essen"
-            - action: scene.turn_on
-              target:
-                entity_id: scene.essen
-
-        - conditions:
-            - condition: state
-              entity_id: input_select.kuche_szene
-              state: "essen"
-          sequence:
-            - action: input_select.select_option
-              target:
-                entity_id: input_select.kuche_szene
-              data:
-                option: "abend"
-            - action: scene.turn_on
-              target:
-                entity_id: scene.abend
-
-        - conditions:
-            - condition: state
-              entity_id: input_select.kuche_szene
-              state: "abend"
-          sequence:
-            - action: input_select.select_option
-              target:
-                entity_id: input_select.kuche_szene
-              data:
-                option: "kochen"
-            - action: scene.turn_on
-              target:
-                entity_id: scene.kochen
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_select.kuche_szene
+        state: kochen
+      sequence:
+      - action: input_select.select_option
+        target:
+          entity_id: input_select.kuche_szene
+        data:
+          option: essen
+      - action: scene.turn_on
+        target:
+          entity_id: scene.essen
+    - conditions:
+      - condition: state
+        entity_id: input_select.kuche_szene
+        state: essen
+      sequence:
+      - action: input_select.select_option
+        target:
+          entity_id: input_select.kuche_szene
+        data:
+          option: abend
+      - action: scene.turn_on
+        target:
+          entity_id: scene.abend
+    - conditions:
+      - condition: state
+        entity_id: input_select.kuche_szene
+        state: abend
+      sequence:
+      - action: input_select.select_option
+        target:
+          entity_id: input_select.kuche_szene
+        data:
+          option: kochen
+      - action: scene.turn_on
+        target:
+          entity_id: scene.kochen
   mode: single
-  description: ""
-
+  description: ''
 yamaha_bandit_rock:
-  alias: "Yamaha – Bandit Rock"
+  alias: Yamaha – Bandit Rock
   sequence:
-    - service: media_player.turn_on
-      target:
-        entity_id: media_player.yamaha_wohnzimmer
-    - delay: "00:00:02"
-    - service: media_player.select_source
-      target:
-        entity_id: media_player.yamaha_wohnzimmer
-      data:
-        source: "NET RADIO"
-    - delay: "00:00:04"
-    - service: media_player.play_media
-      target:
-        entity_id: media_player.yamaha_wohnzimmer
-      data:
-        media_content_type: "NET RADIO"
-        media_content_id: "Bookmarks>Favoriten>Bandit Rock"
-
+  - service: media_player.turn_on
+    target:
+      entity_id: media_player.yamaha_wohnzimmer
+  - delay: 00:00:02
+  - service: media_player.select_source
+    target:
+      entity_id: media_player.yamaha_wohnzimmer
+    data:
+      source: NET RADIO
+  - delay: 00:00:04
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.yamaha_wohnzimmer
+    data:
+      media_content_type: NET RADIO
+      media_content_id: Bookmarks>Favoriten>Bandit Rock
 yamaha_mix_megapol:
-  alias: "Yamaha – Mix Megapol"
+  alias: Yamaha – Mix Megapol
   sequence:
-    - service: media_player.turn_on
-      target:
-        entity_id: media_player.yamaha_wohnzimmer
-    - delay: "00:00:02"
-    - service: media_player.select_source
-      target:
-        entity_id: media_player.yamaha_wohnzimmer
-      data:
-        source: "NET RADIO"
-    - delay: "00:00:04"
-    - service: media_player.play_media
-      target:
-        entity_id: media_player.yamaha_wohnzimmer
-      data:
-        media_content_type: "NET RADIO"
-        media_content_id: "Bookmarks>Favoriten>Mix Megapol"
-
+  - service: media_player.turn_on
+    target:
+      entity_id: media_player.yamaha_wohnzimmer
+  - delay: 00:00:02
+  - service: media_player.select_source
+    target:
+      entity_id: media_player.yamaha_wohnzimmer
+    data:
+      source: NET RADIO
+  - delay: 00:00:04
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.yamaha_wohnzimmer
+    data:
+      media_content_type: NET RADIO
+      media_content_id: Bookmarks>Favoriten>Mix Megapol
 yamaha_rix_fm:
-  alias: "Yamaha – RIX FM"
+  alias: Yamaha – RIX FM
   sequence:
-    - service: media_player.turn_on
-      target:
-        entity_id: media_player.yamaha_wohnzimmer
-    - delay: "00:00:02"
-    - service: media_player.select_source
-      target:
-        entity_id: media_player.yamaha_wohnzimmer
-      data:
-        source: "NET RADIO"
-    - delay: "00:00:04"
-    - service: media_player.play_media
-      target:
-        entity_id: media_player.yamaha_wohnzimmer
-      data:
-        media_content_type: "NET RADIO"
-        media_content_id: "Bookmarks>Favoriten>RIX FM"
-
+  - service: media_player.turn_on
+    target:
+      entity_id: media_player.yamaha_wohnzimmer
+  - delay: 00:00:02
+  - service: media_player.select_source
+    target:
+      entity_id: media_player.yamaha_wohnzimmer
+    data:
+      source: NET RADIO
+  - delay: 00:00:04
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.yamaha_wohnzimmer
+    data:
+      media_content_type: NET RADIO
+      media_content_id: Bookmarks>Favoriten>RIX FM
 yamaha_volume_up:
-  alias: "Yamaha – Lauter"
+  alias: Yamaha – Lauter
   mode: queued
   max: 10
   sequence:
-    - service: media_player.volume_set
-      target:
-        entity_id: media_player.yamaha_wohnzimmer
-      data:
-        volume_level: "{{ state_attr('media_player.yamaha_wohnzimmer', 'volume_level') + 0.05 }}"
-
+  - service: media_player.volume_set
+    target:
+      entity_id: media_player.yamaha_wohnzimmer
+    data:
+      volume_level: '{{ state_attr(''media_player.yamaha_wohnzimmer'', ''volume_level'')
+        + 0.05 }}'
 yamaha_volume_down:
-  alias: "Yamaha – Leiser"
+  alias: Yamaha – Leiser
   mode: queued
   max: 10
   sequence:
-    - service: media_player.volume_set
-      target:
-        entity_id: media_player.yamaha_wohnzimmer
-      data:
-        volume_level: "{{ state_attr('media_player.yamaha_wohnzimmer', 'volume_level') - 0.05 }}"
-
+  - service: media_player.volume_set
+    target:
+      entity_id: media_player.yamaha_wohnzimmer
+    data:
+      volume_level: '{{ state_attr(''media_player.yamaha_wohnzimmer'', ''volume_level'')
+        - 0.05 }}'
 yamaha_input_chromecast:
-  alias: "Yamaha – Input Chromecast"
+  alias: Yamaha – Input Chromecast
   sequence:
-    - service: media_player.turn_on
-      target:
-        entity_id: media_player.yamaha_wohnzimmer
-    - delay: "00:00:02"
-    - service: media_player.select_source
-      target:
-        entity_id: media_player.yamaha_wohnzimmer
-      data:
-        source: "OPTICAL1"
-
+  - service: media_player.turn_on
+    target:
+      entity_id: media_player.yamaha_wohnzimmer
+  - delay: 00:00:02
+  - service: media_player.select_source
+    target:
+      entity_id: media_player.yamaha_wohnzimmer
+    data:
+      source: OPTICAL1
 kuche_toggle:
-  alias: "Küche – An/Aus"
+  alias: Küche – An/Aus
   sequence:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: sensor.hob_bsh_common_status_operationstate
+        state: Run
+      sequence:
+      - action: scene.turn_on
+        target:
+          entity_id: scene.kochen
+    default:
     - action: light.toggle
       target:
         entity_id: light.kuche_gesamt
   mode: single
-  description: ""
-  
+  description: Waehrend das Kochfeld laeuft immer die Kochen-Szene erzwingen statt
+    zu togglen, damit die Kochfeld-Lampen nicht versehentlich ausgehen.
 yamaha_toggle_mit_radio:
-  alias: "Yamaha – An/Aus mit Radio"
+  alias: Yamaha – An/Aus mit Radio
   sequence:
-    - choose:
-        - conditions:
-            - condition: state
-              entity_id: media_player.yamaha_wohnzimmer
-              state: "off"
-          sequence:
-            - service: script.turn_on
-              target:
-                entity_id: script.yamaha_bandit_rock
-      default:
-        - service: media_player.turn_off
-          target:
-            entity_id: media_player.yamaha_wohnzimmer
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: media_player.yamaha_wohnzimmer
+        state: 'off'
+      sequence:
+      - service: script.turn_on
+        target:
+          entity_id: script.yamaha_bandit_rock
+    default:
+    - service: media_player.turn_off
+      target:
+        entity_id: media_player.yamaha_wohnzimmer
   mode: single
-
 terrasse_sender_wechseln:
-  alias: "Terrasse – Sender wechseln"
+  alias: Terrasse – Sender wechseln
   sequence:
-    - choose:
-        - conditions:
-            - condition: state
-              entity_id: input_select.terrasse_sender
-              state: "Bandit Rock"
-          sequence:
-            - action: input_select.select_option
-              target:
-                entity_id: input_select.terrasse_sender
-              data:
-                option: "RIX FM"
-            - action: media_player.play_media
-              target:
-                entity_id: media_player.terasse_radio
-              data:
-                media_content_id: "https://fm01-ice.stream.khz.se/fm01_mp3"
-                media_content_type: "music"
-        - conditions:
-            - condition: state
-              entity_id: input_select.terrasse_sender
-              state: "RIX FM"
-          sequence:
-            - action: input_select.select_option
-              target:
-                entity_id: input_select.terrasse_sender
-              data:
-                option: "Mix Megapol"
-            - action: media_player.play_media
-              target:
-                entity_id: media_player.terasse_radio
-              data:
-                media_content_id: "https://live-bauerse-fm.sharp-stream.com/mixmegapol_instream_se_mp3"
-                media_content_type: "music"
-        - conditions:
-            - condition: state
-              entity_id: input_select.terrasse_sender
-              state: "Mix Megapol"
-          sequence:
-            - action: input_select.select_option
-              target:
-                entity_id: input_select.terrasse_sender
-              data:
-                option: "Star FM"
-            - action: media_player.play_media
-              target:
-                entity_id: media_player.terasse_radio
-              data:
-                media_content_id: "https://fm05-ice.stream.khz.se/fm05_mp3"
-                media_content_type: "music"
-        - conditions:
-            - condition: state
-              entity_id: input_select.terrasse_sender
-              state: "Star FM"
-          sequence:
-            - action: input_select.select_option
-              target:
-                entity_id: input_select.terrasse_sender
-              data:
-                option: "Bandit Rock"
-            - action: media_player.play_media
-              target:
-                entity_id: media_player.terasse_radio
-              data:
-                media_content_id: "https://fm02-ice.stream.khz.se/fm02_mp3"
-                media_content_type: "music"
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_select.terrasse_sender
+        state: Bandit Rock
+      sequence:
+      - action: input_select.select_option
+        target:
+          entity_id: input_select.terrasse_sender
+        data:
+          option: RIX FM
+      - action: media_player.play_media
+        target:
+          entity_id: media_player.terasse_radio
+        data:
+          media_content_id: https://fm01-ice.stream.khz.se/fm01_mp3
+          media_content_type: music
+    - conditions:
+      - condition: state
+        entity_id: input_select.terrasse_sender
+        state: RIX FM
+      sequence:
+      - action: input_select.select_option
+        target:
+          entity_id: input_select.terrasse_sender
+        data:
+          option: Mix Megapol
+      - action: media_player.play_media
+        target:
+          entity_id: media_player.terasse_radio
+        data:
+          media_content_id: https://live-bauerse-fm.sharp-stream.com/mixmegapol_instream_se_mp3
+          media_content_type: music
+    - conditions:
+      - condition: state
+        entity_id: input_select.terrasse_sender
+        state: Mix Megapol
+      sequence:
+      - action: input_select.select_option
+        target:
+          entity_id: input_select.terrasse_sender
+        data:
+          option: Star FM
+      - action: media_player.play_media
+        target:
+          entity_id: media_player.terasse_radio
+        data:
+          media_content_id: https://fm05-ice.stream.khz.se/fm05_mp3
+          media_content_type: music
+    - conditions:
+      - condition: state
+        entity_id: input_select.terrasse_sender
+        state: Star FM
+      sequence:
+      - action: input_select.select_option
+        target:
+          entity_id: input_select.terrasse_sender
+        data:
+          option: Bandit Rock
+      - action: media_player.play_media
+        target:
+          entity_id: media_player.terasse_radio
+        data:
+          media_content_id: https://fm02-ice.stream.khz.se/fm02_mp3
+          media_content_type: music
   mode: single
-  description: ""
+  description: ''
+heizung_benachrichtigen:
+  alias: Heizung benachrichtigen
+  icon: mdi:fire-alert
+  mode: queued
+  description: Push an beide Handys. kritisch=true nutzt den Android-Kanal alarm_stream
+    (klingelt auch bei lautlos). Wiederverwendbar für weitere Heizungs-Hinweise.
+  fields:
+    titel:
+      name: Titel
+      required: true
+      selector:
+        text: {}
+    nachricht:
+      name: Nachricht
+      required: true
+      selector:
+        text:
+          multiline: true
+    kritisch:
+      name: Kritisch
+      default: false
+      selector:
+        boolean: {}
+    tag:
+      name: Tag
+      default: holzvergaser
+      selector:
+        text: {}
+  sequence:
+  - variables:
+      push:
+        tag: '{{ tag | default(''holzvergaser'') }}'
+        channel: '{{ ''alarm_stream'' if kritisch | default(false) else ''Heizung''
+          }}'
+        importance: high
+        priority: high
+        ttl: 0
+        color: '{{ ''#d32f2f'' if kritisch | default(false) else ''#f57c00'' }}'
+        notification_icon: mdi:fire-alert
+  - parallel:
+    - action: notify.mobile_app_bbr_mobil
+      continue_on_error: true
+      data:
+        title: '{{ titel }}'
+        message: '{{ nachricht }}'
+        data: '{{ push }}'
+    - action: notify.mobile_app_mara_s_mobil
+      continue_on_error: true
+      data:
+        title: '{{ titel }}'
+        message: '{{ nachricht }}'
+        data: '{{ push }}'

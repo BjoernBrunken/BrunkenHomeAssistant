@@ -253,7 +253,6 @@
     target:
       entity_id: media_player.yamaha_wohnzimmer
   mode: single
-
 - id: shelly_kuche2_bandit_rock
   alias: Mainhouse_kitchen-shelly2 – Bandit Rock starten
   triggers:
@@ -267,7 +266,6 @@
   - action: script.yamaha_bandit_rock
     data: {}
   mode: single
-
 - id: shelly_kuche2_radio_off
   alias: Mainhouse_kitchen-shelly2 – Radio aus
   triggers:
@@ -283,85 +281,88 @@
     target:
       entity_id: media_player.yamaha_wohnzimmer
   mode: single
-
-- alias: "Cube Küche – Seite 1 – Bandit Rock"
+- alias: Cube Küche – Seite 1 – Bandit Rock
   trigger:
-    - platform: mqtt
-      topic: zigbee2mqtt/MainHouse-Kitchen_cube/action
+  - platform: mqtt
+    topic: zigbee2mqtt/MainHouse-Kitchen_cube/action
   condition:
-    - condition: template
-      value_template: "{{ trigger.payload in ['flip90', 'flip180'] and states('sensor.mainhouse_kitchen_cube_side') == '1' }}"
+  - condition: template
+    value_template: '{{ trigger.payload in [''flip90'', ''flip180''] and states(''sensor.mainhouse_kitchen_cube_side'')
+      == ''1'' }}'
   action:
-    - service: script.turn_on
-      target:
-        entity_id: script.yamaha_bandit_rock
-
-- alias: "Cube Küche – Seite 2 – Mix Megapol"
+  - service: script.turn_on
+    target:
+      entity_id: script.yamaha_bandit_rock
+  id: e357b1c9693b43fc83a1ac20af781a84
+- alias: Cube Küche – Seite 2 – Mix Megapol
   trigger:
-    - platform: mqtt
-      topic: zigbee2mqtt/MainHouse-Kitchen_cube/action
+  - platform: mqtt
+    topic: zigbee2mqtt/MainHouse-Kitchen_cube/action
   condition:
-    - condition: template
-      value_template: "{{ trigger.payload in ['flip90', 'flip180'] and states('sensor.mainhouse_kitchen_cube_side') == '2' }}"
+  - condition: template
+    value_template: '{{ trigger.payload in [''flip90'', ''flip180''] and states(''sensor.mainhouse_kitchen_cube_side'')
+      == ''2'' }}'
   action:
-    - service: script.turn_on
-      target:
-        entity_id: script.yamaha_mix_megapol
-
-- alias: "Cube Küche – Seite 3 – RIX FM"
+  - service: script.turn_on
+    target:
+      entity_id: script.yamaha_mix_megapol
+  id: afc0ba1004b94567883198efc0ab4a46
+- alias: Cube Küche – Seite 3 – RIX FM
   trigger:
-    - platform: mqtt
-      topic: zigbee2mqtt/MainHouse-Kitchen_cube/action
+  - platform: mqtt
+    topic: zigbee2mqtt/MainHouse-Kitchen_cube/action
   condition:
-    - condition: template
-      value_template: "{{ trigger.payload in ['flip90', 'flip180'] and states('sensor.mainhouse_kitchen_cube_side') == '3' }}"
+  - condition: template
+    value_template: '{{ trigger.payload in [''flip90'', ''flip180''] and states(''sensor.mainhouse_kitchen_cube_side'')
+      == ''3'' }}'
   action:
-    - service: script.turn_on
-      target:
-        entity_id: script.yamaha_rix_fm
-
-- alias: "Cube Küche – Seite 4 – Chromecast"
+  - service: script.turn_on
+    target:
+      entity_id: script.yamaha_rix_fm
+  id: 4b88b3c8082e464d9bde6da3df17b32c
+- alias: Cube Küche – Seite 4 – Chromecast
   trigger:
-    - platform: mqtt
-      topic: zigbee2mqtt/MainHouse-Kitchen_cube/action
+  - platform: mqtt
+    topic: zigbee2mqtt/MainHouse-Kitchen_cube/action
   condition:
-    - condition: template
-      value_template: "{{ trigger.payload in ['flip90', 'flip180'] and states('sensor.mainhouse_kitchen_cube_side') == '4' }}"
+  - condition: template
+    value_template: '{{ trigger.payload in [''flip90'', ''flip180''] and states(''sensor.mainhouse_kitchen_cube_side'')
+      == ''4'' }}'
   action:
-    - service: script.turn_on
-      target:
-        entity_id: script.yamaha_input_chromecast
-
-- alias: "Cube Küche – Drehen rechts – Lauter"
+  - service: script.turn_on
+    target:
+      entity_id: script.yamaha_input_chromecast
+  id: 06913b5187604d17a8c9e524c0214f85
+- alias: Cube Küche – Drehen rechts – Lauter
   trigger:
-    - platform: mqtt
-      topic: zigbee2mqtt/MainHouse-Kitchen_cube/action
-      payload: "rotate_right"
+  - platform: mqtt
+    topic: zigbee2mqtt/MainHouse-Kitchen_cube/action
+    payload: rotate_right
   action:
-    - service: script.turn_on
-      target:
-        entity_id: script.yamaha_volume_up
-
-- alias: "Cube Küche – Drehen links – Leiser"
+  - service: script.turn_on
+    target:
+      entity_id: script.yamaha_volume_up
+  id: 38430920dfea495abb12d59da35d9034
+- alias: Cube Küche – Drehen links – Leiser
   trigger:
-    - platform: mqtt
-      topic: zigbee2mqtt/MainHouse-Kitchen_cube/action
-      payload: "rotate_left"
+  - platform: mqtt
+    topic: zigbee2mqtt/MainHouse-Kitchen_cube/action
+    payload: rotate_left
   action:
-    - service: script.turn_on
-      target:
-        entity_id: script.yamaha_volume_down
-
-- alias: "Cube Küche – Schütteln – An/Aus"
+  - service: script.turn_on
+    target:
+      entity_id: script.yamaha_volume_down
+  id: 1f9dcf2cb94b466abf3f88a06040ee39
+- alias: Cube Küche – Schütteln – An/Aus
   trigger:
-    - platform: mqtt
-      topic: zigbee2mqtt/MainHouse-Kitchen_cube/action
-      payload: "shake"
+  - platform: mqtt
+    topic: zigbee2mqtt/MainHouse-Kitchen_cube/action
+    payload: shake
   action:
-    - service: script.turn_on
-      target:
-        entity_id: script.yamaha_toggle_mit_radio
-
+  - service: script.turn_on
+    target:
+      entity_id: script.yamaha_toggle_mit_radio
+  id: 27e5a756721f4ace9be0a8f09c756efd
 - id: exterior_south_evening_on
   alias: Exterior_South_Evening_ON
   description: Fassadenlampen Süd einschalten, 20 Min. vor Sonnenuntergang
@@ -378,13 +379,12 @@
     target:
       entity_id: switch.0x7cc6b6fffee7895e
   mode: single
-
 - id: exterior_south_evening_off
   alias: Exterior_South_Evening_OFF
   description: Fassadenlampen Süd ausschalten um Mitternacht
   triggers:
   - trigger: time
-    at: '00:00:00'
+    at: 00:00:00
   conditions:
   - condition: state
     entity_id: switch.0x7cc6b6fffee7895e
@@ -394,23 +394,22 @@
     target:
       entity_id: switch.0x7cc6b6fffee7895e
   mode: single
-
 - id: exterior_south_morning_on
   alias: Exterior_South_Morning_ON
-  description: Fassadenlampen Süd morgens einschalten (nur wenn Sonne noch unter dem Horizont)
+  description: Fassadenlampen Süd morgens einschalten (nur wenn Sonne noch unter dem
+    Horizont)
   triggers:
   - trigger: time
-    at: '05:00:00'
+    at: 05:00:00
   conditions:
   - condition: state
     entity_id: sun.sun
-    state: 'below_horizon'
+    state: below_horizon
   actions:
   - action: switch.turn_on
     target:
       entity_id: switch.0x7cc6b6fffee7895e
   mode: single
-
 - id: exterior_south_morning_off
   alias: Exterior_South_Morning_OFF
   description: Fassadenlampen Süd ausschalten 15 Min. nach Sonnenaufgang
@@ -427,13 +426,13 @@
     target:
       entity_id: switch.0x7cc6b6fffee7895e
   mode: single
-
 - id: exterior_south_backstop_off
   alias: Exterior_South_Backstop_OFF
-  description: Sicherheits-Aus um 07:00 falls Fassadenlampen noch brennen (z.B. nach HA-Neustart)
+  description: Sicherheits-Aus um 07:00 falls Fassadenlampen noch brennen (z.B. nach
+    HA-Neustart)
   triggers:
   - trigger: time
-    at: '07:00:00'
+    at: 07:00:00
   conditions:
   - condition: state
     entity_id: switch.0x7cc6b6fffee7895e
@@ -443,10 +442,10 @@
     target:
       entity_id: switch.0x7cc6b6fffee7895e
   mode: single
-
 - id: party_modus_on
   alias: Party Modus – Start
-  description: Startet Colorloop mit goldenen Winkel-Startfarben auf allen 14 Küchen-Spots via MQTT
+  description: Startet Colorloop mit goldenen Winkel-Startfarben auf allen 14 Küchen-Spots
+    via MQTT
   triggers:
   - trigger: state
     entity_id: input_boolean.party_modus
@@ -458,11 +457,12 @@
       sequence:
       - action: mqtt.publish
         data:
-          topic: "zigbee2mqtt/MainHouse-Kitchen_{{ repeat.index }}/set"
-          payload: "{{ {'color': {'h': (((repeat.index - 1) * 137.508) % 360) | int, 's': 100}, 'brightness': 200, 'effect': 'colorloop'} | to_json }}"
+          topic: zigbee2mqtt/MainHouse-Kitchen_{{ repeat.index }}/set
+          payload: '{{ {''color'': {''h'': (((repeat.index - 1) * 137.508) % 360)
+            | int, ''s'': 100}, ''brightness'': 200, ''effect'': ''colorloop''} |
+            to_json }}'
       - delay: '00:00:00.2'
   mode: single
-
 - id: party_modus_off
   alias: Party Modus – Stop
   description: Stoppt Colorloop und stellt Kochszene wieder her
@@ -477,12 +477,11 @@
       entity_id: light.mainhouse_kitchen_grp
     data:
       effect: stop_effect
-  - delay: '00:00:01'
+  - delay: 00:00:01
   - action: scene.turn_on
     target:
       entity_id: scene.kochen
   mode: single
-
 - id: ikea_terrasse_toggle
   alias: IKEA Terrasse – Play/Pause
   description: Power-Taste startet oder pausiert die Terrassen-Musik
@@ -498,7 +497,6 @@
     target:
       entity_id: media_player.terasse_radio
   mode: single
-
 - id: ikea_terrasse_sender
   alias: IKEA Terrasse – Sender wechseln
   description: Pfeil rechts schaltet zum nächsten Radiosender
@@ -513,7 +511,6 @@
   - action: script.terrasse_sender_wechseln
     data: {}
   mode: single
-
 - id: ikea_terrasse_lauter
   alias: IKEA Terrasse – Lauter
   triggers:
@@ -528,9 +525,9 @@
     target:
       entity_id: media_player.terasse_radio
     data:
-      volume_level: "{{ [[(state_attr('media_player.terasse_radio', 'volume_level') | float(0) + 0.05), 0.0] | max, 1.0] | min }}"
+      volume_level: '{{ [[(state_attr(''media_player.terasse_radio'', ''volume_level'')
+        | float(0) + 0.05), 0.0] | max, 1.0] | min }}'
   mode: single
-
 - id: badtunna_6h
   alias: Badtunna – Pumpe 6 Stunden
   description: Pumpe manuell 6 Stunden einschalten; zweiter Druck stoppt sofort
@@ -573,10 +570,10 @@
         target:
           entity_id: switch.garden_badtunna_pump
   mode: restart
-
 - id: badtunna_daily
   alias: Badtunna – Tägliche Pumpen-Laufzeit
-  description: Pumpe täglich 30 Min. um 10:00 Uhr (nur wenn Außentemp > 5°C und kein manueller Betrieb aktiv)
+  description: Pumpe täglich 30 Min. um 10:00 Uhr (nur wenn Außentemp > 5°C und kein
+    manueller Betrieb aktiv)
   triggers:
   - trigger: time
     at: '10:00:00'
@@ -599,7 +596,6 @@
     target:
       entity_id: switch.garden_badtunna_pump
   mode: single
-
 - id: ikea_terrasse_leiser
   alias: IKEA Terrasse – Leiser
   triggers:
@@ -614,5 +610,351 @@
     target:
       entity_id: media_player.terasse_radio
     data:
-      volume_level: "{{ [[(state_attr('media_player.terasse_radio', 'volume_level') | float(0) - 0.05), 0.0] | max, 1.0] | min }}"
+      volume_level: '{{ [[(state_attr(''media_player.terasse_radio'', ''volume_level'')
+        | float(0) - 0.05), 0.0] | max, 1.0] | min }}'
   mode: single
+- id: kochfeld_licht_wenig_tageslicht
+  alias: 'Kochfeld: Licht bei wenig Tageslicht'
+  description: Schaltet 3 Lampen ueber dem Kochfeld auf 100% / kaltweiss, wenn das
+    Kochfeld laeuft, es zu dunkel ist und noch kein Licht brennt.
+  triggers:
+  - entity_id: sensor.hob_bsh_common_status_operationstate
+    to: Run
+    trigger: state
+  conditions:
+  - condition: numeric_state
+    entity_id: sensor.bewegungsmelder_illuminance
+    below: 250
+  - condition: state
+    entity_id: light.0xa4c13877cdeb5a0d
+    state: 'off'
+  - condition: state
+    entity_id: light.0xa4c138efd3d36d01
+    state: 'off'
+  - condition: state
+    entity_id: light.0xa4c138274630e804
+    state: 'off'
+  actions:
+  - target:
+      entity_id:
+      - light.0xa4c13877cdeb5a0d
+      - light.0xa4c138efd3d36d01
+      - light.0xa4c138274630e804
+    data:
+      brightness_pct: 100
+      color_temp_kelvin: 6329
+    action: light.turn_on
+  mode: single
+- id: exterior_east_evening_on
+  alias: Exterior_East_Evening_ON
+  description: Fassadenlampen Ost einschalten, 20 Min. vor Sonnenuntergang
+  triggers:
+  - trigger: sun
+    event: sunset
+    offset: -00:20:00
+  conditions:
+  - condition: state
+    entity_id: switch.mainhouse_exterior_light_east
+    state: 'off'
+  actions:
+  - action: switch.turn_on
+    target:
+      entity_id: switch.mainhouse_exterior_light_east
+  mode: single
+- id: exterior_east_evening_off
+  alias: Exterior_East_Evening_OFF
+  description: Fassadenlampen Ost ausschalten um Mitternacht
+  triggers:
+  - trigger: time
+    at: 00:00:00
+  conditions:
+  - condition: state
+    entity_id: switch.mainhouse_exterior_light_east
+    state: 'on'
+  actions:
+  - action: switch.turn_off
+    target:
+      entity_id: switch.mainhouse_exterior_light_east
+  mode: single
+- id: exterior_east_morning_on
+  alias: Exterior_East_Morning_ON
+  description: Fassadenlampen Ost morgens einschalten (nur wenn Sonne noch unter dem
+    Horizont)
+  triggers:
+  - trigger: time
+    at: 05:00:00
+  conditions:
+  - condition: state
+    entity_id: sun.sun
+    state: below_horizon
+  actions:
+  - action: switch.turn_on
+    target:
+      entity_id: switch.mainhouse_exterior_light_east
+  mode: single
+- id: exterior_east_morning_off
+  alias: Exterior_East_Morning_OFF
+  description: Fassadenlampen Ost ausschalten 15 Min. nach Sonnenaufgang
+  triggers:
+  - trigger: sun
+    event: sunrise
+    offset: 00:15:00
+  conditions:
+  - condition: state
+    entity_id: switch.mainhouse_exterior_light_east
+    state: 'on'
+  actions:
+  - action: switch.turn_off
+    target:
+      entity_id: switch.mainhouse_exterior_light_east
+  mode: single
+- id: exterior_east_backstop_off
+  alias: Exterior_East_Backstop_OFF
+  description: Sicherheits-Aus um 07:00 falls Fassadenlampen noch brennen (z.B. nach
+    HA-Neustart)
+  triggers:
+  - trigger: time
+    at: 07:00:00
+  conditions:
+  - condition: state
+    entity_id: switch.mainhouse_exterior_light_east
+    state: 'on'
+  actions:
+  - action: switch.turn_off
+    target:
+      entity_id: switch.mainhouse_exterior_light_east
+  mode: single
+- id: '1792000000001'
+  alias: Hoflicht Override Auto-Reset
+  description: Setzt input_boolean.hoflicht_override nach 2h bzw. nach HA-Neustart
+    zurück, damit 'Hoflicht aus bei keiner Bewegung' nicht dauerhaft blockiert ist.
+    Schaltet das Licht aus, wenn beide Bewegungsmelder seit 10 min frei sind.
+  triggers:
+  - trigger: state
+    entity_id: input_boolean.hoflicht_override
+    to: 'on'
+    for:
+      hours: 2
+      minutes: 0
+      seconds: 0
+  - trigger: homeassistant
+    event: start
+  conditions:
+  - condition: state
+    entity_id: input_boolean.hoflicht_override
+    state: 'on'
+  actions:
+  - action: input_boolean.turn_off
+    target:
+      entity_id: input_boolean.hoflicht_override
+  - if:
+    - condition: state
+      entity_id: light.gard_mainhouse_floodligt
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.0x001788010ebadd57_occupancy
+      state: 'off'
+      for:
+        minutes: 10
+    - condition: state
+      entity_id: binary_sensor.bewegungsmelder_occupancy
+      state: 'off'
+      for:
+        minutes: 10
+    then:
+    - action: light.turn_off
+      target:
+        entity_id: light.gard_mainhouse_floodligt
+  mode: single
+- id: '1792000000002'
+  alias: Window_Ambient_Bath_ON
+  description: Ambient-Licht im Badfenster einschalten (dezent), kurz vor Sonnenuntergang.
+  triggers:
+  - event: sunset
+    offset: -00:20:00
+    trigger: sun
+  conditions:
+  - condition: state
+    entity_id: light.mainhouse_bath_ambient_window
+    state:
+    - 'off'
+  actions:
+  - data:
+      brightness_pct: 15
+    action: light.turn_on
+    target:
+      entity_id: light.mainhouse_bath_ambient_window
+  mode: restart
+- id: '1792000000003'
+  alias: Window_Ambient_Bath_OFF
+  description: Ambient-Licht im Badfenster ausschalten bei Sonnenaufgang.
+  triggers:
+  - event: sunrise
+    offset: 00:10:00
+    trigger: sun
+  conditions:
+  - condition: state
+    entity_id: light.mainhouse_bath_ambient_window
+    state:
+    - 'on'
+  actions:
+  - action: light.turn_off
+    data: {}
+    target:
+      entity_id: light.mainhouse_bath_ambient_window
+  mode: restart
+- id: '1792679984628'
+  alias: Bath_light_ON
+  description: ''
+  triggers:
+  - trigger: switch.turned_on
+    target:
+      device_id: dbbc556b6c310c2124e2672491731932
+    options:
+      behavior: each
+      for: 00:00:00
+  conditions:
+  - condition: light.is_off
+    target:
+      entity_id: light.mainhouse_bath_grp
+    options:
+      for: 00:00:00
+  actions:
+  - action: light.turn_on
+    metadata: {}
+    target:
+      entity_id: light.mainhouse_bath_grp
+    data: {}
+  mode: single
+- id: '1792680137415'
+  alias: Bath_switch_OFF
+  description: ''
+  triggers:
+  - trigger: switch.turned_off
+    target:
+      device_id: dbbc556b6c310c2124e2672491731932
+    options:
+      for: 00:00:00
+      behavior: each
+  conditions:
+  - condition: light.is_on
+    target:
+      entity_id: light.mainhouse_bath_grp
+    options:
+      for: 00:00:00
+  actions:
+  - action: light.turn_off
+    metadata: {}
+    target:
+      entity_id: light.mainhouse_bath_grp
+    data: {}
+  mode: single
+- id: '1792853415586'
+  alias: Mainhouse-switch-laundry_ON
+  description: ''
+  triggers:
+  - trigger: switch.turned_on
+    target:
+      entity_id: switch.0xc02cedfffef194e1
+    options:
+      behavior: each
+      for: 00:00:00
+  conditions:
+  - condition: state
+    entity_id: switch.0x94a081fffebea4da
+    state:
+    - 'off'
+  actions:
+  - action: switch.turn_on
+    metadata: {}
+    target:
+      entity_id: switch.0x94a081fffebea4da
+    data: {}
+  mode: single
+- id: '1792853566049'
+  alias: Mainhouse-laundry-seitch_OFF
+  description: ''
+  triggers:
+  - trigger: switch.turned_off
+    target:
+      entity_id: switch.0xc02cedfffef194e1
+    options:
+      behavior: each
+      for: 00:00:00
+  conditions:
+  - condition: state
+    entity_id: switch.0x94a081fffebea4da
+    state:
+    - 'on'
+  actions:
+  - action: switch.turn_off
+    metadata: {}
+    target:
+      entity_id: switch.0x94a081fffebea4da
+    data: {}
+  mode: single
+- id: '1792000000010'
+  alias: Holzvergaser Temperaturwarnung
+  description: 'Warnt, wenn die Kesseltemperatur 5 min über der Warnschwelle liegt
+    (≈ 2 Messwerte, filtert Einzel-Ausreißer), sofort über der kritischen Schwelle,
+    und wenn der Kesselfühler 30 min nichts sendet. Schwellen aus Historie 2023–2026
+    abgeleitet: Warnung 95 °C (oberste 0,2 % der Zeit), kritisch 98 °C (seit März
+    2026 nie dauerhaft erreicht).'
+  triggers:
+  - trigger: numeric_state
+    entity_id: sensor.holzvergaser_kesseltemperatur
+    above: input_number.holzvergaser_warnschwelle
+    for:
+      minutes: 5
+    id: warn
+  - trigger: numeric_state
+    entity_id: sensor.holzvergaser_kesseltemperatur
+    above: input_number.holzvergaser_kritische_schwelle
+    id: kritisch
+  - trigger: state
+    entity_id: sensor.holzvergaser_kesseltemperatur
+    to: unavailable
+    id: ausfall
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: kritisch
+      sequence:
+      - action: script.heizung_benachrichtigen
+        data:
+          kritisch: true
+          titel: "\U0001F525 Holzvergaser KRITISCH"
+          nachricht: Kessel {{ states('sensor.holzvergaser_kesseltemperatur') }} °C
+            – über der kritischen Schwelle von {{ states('input_number.holzvergaser_kritische_schwelle')
+            | int }} °C!
+    - conditions:
+      - condition: trigger
+        id: warn
+      - condition: numeric_state
+        entity_id: sensor.holzvergaser_kesseltemperatur
+        below: input_number.holzvergaser_kritische_schwelle
+      sequence:
+      - action: script.heizung_benachrichtigen
+        data:
+          kritisch: false
+          titel: Holzvergaser warm
+          nachricht: Kessel {{ states('sensor.holzvergaser_kesseltemperatur') }} °C
+            – über der Warnschwelle von {{ states('input_number.holzvergaser_warnschwelle')
+            | int }} °C.
+    - conditions:
+      - condition: trigger
+        id: ausfall
+      - condition: template
+        value_template: '{{ trigger.from_state is not none and trigger.from_state.state
+          | is_number }}'
+      sequence:
+      - action: script.heizung_benachrichtigen
+        data:
+          kritisch: false
+          tag: holzvergaser_fuehler
+          titel: Kesselfühler ausgefallen
+          nachricht: Seit 30 Minuten kein Wert vom Kesselfühler (zuletzt {{ trigger.from_state.state
+            }} °C). Gateway, maserver oder Sensor-Batterie prüfen.
+  mode: queued
