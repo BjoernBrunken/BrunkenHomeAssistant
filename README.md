@@ -162,6 +162,15 @@ Zusätzlich per Kachel „Dunkler Tag“ im Dashboard (Home, unter „Kitchen“
 |---|---|---|---|
 | **Dunkler Tag** (`scene.kuche_dunkler_tag`) | 30 % | Warm (RGB 255, 209, 138) + Vitrinenlicht 30 % | Ein wenig Licht an trüben Tagen |
 
+## 🛁 Bad – Licht & Musik
+
+Sobald das Bad-Licht angeht (Wandschalter, App oder Dashboard):
+
+- Die 8 Spots gehen auf **warmweiß (2700 K) mit 40 %** – egal, wie sie vorher eingestellt waren.
+- Der MoOde-Player (früher Terrasse, steht jetzt im Bad) spielt **SomaFM Groove Salad**.
+
+Licht aus → Musik aus. Ausnahme: Wird das Licht über eine der Bad-Szenen eingeschaltet, bleibt die Szenenfarbe (Musik läuft trotzdem).
+
 ## 🛁 Lichtstimmungen im Bad
 
 Fünf Kacheln im Dashboard-Tab **Badrum** (Abschnitt „Szenen Spots“), alle 8 Spots auf 30 %:

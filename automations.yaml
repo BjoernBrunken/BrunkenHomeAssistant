@@ -114,22 +114,6 @@
         target:
           entity_id: light.gard_mainhouse_floodligt
   mode: single
-- id: '1767197158479'
-  alias: 'Küchenlicht '
-  description: ''
-  triggers:
-  - type: changed_states
-    device_id: 50de72812c199f60409b8a33a37b2665
-    entity_id: 3c58a9cb02448815898b893c39bdd3ae
-    domain: light
-    trigger: device
-  conditions: []
-  actions:
-  - type: toggle
-    device_id: 97bf84ea1e3ee67092bf7fe37be59973
-    entity_id: 52469430819eb117d3ec0ca640050618
-    domain: light
-  mode: single
 - id: '1772438573674'
   alias: Window_Ambient_Kitchen_ON
   description: Ambient-Licht in den Fensterleibungen einschalten (dezent), kurz vor
@@ -958,3 +942,60 @@
           nachricht: Seit 30 Minuten kein Wert vom Kesselfühler (zuletzt {{ trigger.from_state.state
             }} °C). Gateway, maserver oder Sensor-Batterie prüfen.
   mode: queued
+- id: '1792000000011'
+  alias: 'Bad: Licht an → warmweiß 40 % + Groove Salad'
+  description: 'Wenn das Bad-Licht angeht (Schalter, App oder Dashboard): Spots auf
+    warmweiß 2700 K / 40 % und MoOde-Player (media_player.terasse_radio, steht jetzt
+    im Bad) spielt SomaFM Groove Salad. Licht aus → Musik aus. Ausnahme: Wurde das
+    Licht durch eine der Bad-Szenen eingeschaltet, bleibt die Szenenfarbe.'
+  triggers:
+  - trigger: state
+    entity_id: light.mainhouse_bath_grp
+    from: 'off'
+    to: 'on'
+    id: an
+  - trigger: state
+    entity_id: light.mainhouse_bath_grp
+    from: 'on'
+    to: 'off'
+    id: aus
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: an
+      sequence:
+      - if:
+        - condition: template
+          value_template: '{{ expand(''scene.bad_pfirsich'',''scene.bad_warmweiss'',''scene.bad_apricot'',''scene.bad_rose'',''scene.bad_himmelblau'')
+            | map(attribute=''state'') | reject(''in'',[''unknown'',''unavailable''])
+            | map(''as_datetime'') | select(''gt'', now() - timedelta(seconds=5))
+            | list | count == 0 }}'
+        then:
+        - action: light.turn_on
+          target:
+            entity_id: light.mainhouse_bath_grp
+          data:
+            brightness_pct: 40
+            color_temp_kelvin: 2700
+      - action: media_player.play_media
+        continue_on_error: true
+        target:
+          entity_id: media_player.terasse_radio
+        data:
+          media_content_id: https://ice2.somafm.com/groovesalad-256-mp3
+          media_content_type: music
+    - conditions:
+      - condition: trigger
+        id: aus
+      - condition: state
+        entity_id: media_player.terasse_radio
+        state:
+        - playing
+        - paused
+      sequence:
+      - action: media_player.media_stop
+        target:
+          entity_id: media_player.terasse_radio
+  mode: restart
