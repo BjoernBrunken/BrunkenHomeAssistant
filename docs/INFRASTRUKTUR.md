@@ -69,7 +69,7 @@ Zigbee-Geräte ──► zigbee2mqtt ──► mosquitto (.100) ─────�
 
 ### InfluxDB `sensor_data`
 
-- Measurement `sensor_data`, Standard-Retention-Policy **`autogen` (unbegrenzt)**. Die alte Policy `two_years` ist nicht mehr Standard und kann gelöscht werden.
+- Measurement `sensor_data`, Retention-Policy **`autogen` (unbegrenzt)**, einzige Policy (`two_years` am 28.10.2026 gelöscht).
 - Felder: `Temp`/`ID` (Akkutanks, Spa), `TempOut`/`Humidity`/`Sensor` (TFA), `RainVolume`, `pressure` (Pa), `temp_value` + Tag `Sensor` (Außentemperatur Zigbee).
 - `Sensor` gibt es als Feld **und** als Tag → in Abfragen `"Sensor"::field` verwenden.
 - Historie vom Pi seit **14.08.2023** übernommen (bis 28.10.2026 09:00 UTC).
@@ -129,7 +129,6 @@ Warnschwellen abgeleitet aus der Kessel-Historie 2023–2026: Median 42 °C, 99 
 ## Offene Punkte
 
 - [ ] Pi abschalten (läuft nur noch als Rückfallebene; Node-RED und MobileAlerts dort deaktiviert).
-- [ ] Retention-Policy `two_years` in InfluxDB löschen.
 - [ ] unraid-Netzmaske `br0` von /24 auf /22 korrigieren (Deco-Netz ist /22).
 - [ ] Spa-Sensor (`/home/spa`) und TFA-Regensensor prüfen – derzeit keine Daten.
 - [ ] Kochfeld-IP 192.168.68.88 im Deco reservieren (MAC 68:A4:0E:8C:F0:C0).
