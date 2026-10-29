@@ -87,6 +87,17 @@ Zigbee-Geräte ──► zigbee2mqtt ──► mosquitto (.100) ─────�
 
 ---
 
+## Immich
+
+- Compose + `.env` in `appdata/immich/`, Datenbank in `appdata/immich/postgres` (sieht per SMB leer aus – Rechte 700/uid 999, Inhalt nur per SSH sichtbar).
+- Fotos: externe Bibliothek, NFS-Freigabe der Synology `/volume1/photo` → Unassigned Devices `/mnt/remotes/BRUNKEN-NAS_photo` → im Container `/mnt/media` (read-only). Bibliotheks-Scan stündlich 8–22 UTC.
+- Tägliche DB-Sicherung durch Immich selbst: `immich/library/backups/` (02:00).
+- **Vorfall 28.10.2026:** Nach dem Einbinden der Backup-Freigabe wurden die NFS-Freigaben neu gemountet, `immich_server` startete 9 s **vor** dem Foto-Mount und sah nur ein leeres Verzeichnis. Der Scan um 16:00 hat daraufhin alle 89 966 Fotos als offline markiert und in den Papierkorb geschoben (30 Tage Aufbewahrung). Behoben am 29.10. mit `docker restart immich_server` + Scan – alle Fotos wiederhergestellt.
+- **Schutz seither:** Unassigned-Devices-Skript `/boot/config/plugins/unassigned.devices/BRUNKEN-NAS_photo.sh` (in `samba_mount.cfg` als `command=` bei der Foto-Freigabe eingetragen). Es startet `immich_server` nach jedem Einbinden der Freigabe neu und schreibt einen Eintrag ins Syslog (`immich-nfs`).
+- Prüfen bei „Immich ist leer“: `docker exec immich_server mount | grep media` – muss `nfs` zeigen, nicht `tmpfs`. **Papierkorb in Immich nicht leeren**, solange das nicht geklärt ist.
+
+---
+
 ## Regenmesser
 
 - MobileAlerts MA10650: zählt die Kippungen einer Wippe (`eventCounter`, kumuliert seit Batteriewechsel, 16 Bit).
