@@ -93,7 +93,9 @@ Zigbee-Geräte ──► zigbee2mqtt ──► mosquitto (.100) ─────�
 - Fotos: externe Bibliothek, NFS-Freigabe der Synology `/volume1/photo` → Unassigned Devices `/mnt/remotes/BRUNKEN-NAS_photo` → im Container `/mnt/media` (read-only). Bibliotheks-Scan stündlich 8–22 UTC.
 - Tägliche DB-Sicherung durch Immich selbst: `immich/library/backups/` (02:00).
 - **Vorfall 28.10.2026:** Nach dem Einbinden der Backup-Freigabe wurden die NFS-Freigaben neu gemountet, `immich_server` startete 9 s **vor** dem Foto-Mount und sah nur ein leeres Verzeichnis. Der Scan um 16:00 hat daraufhin alle 89 966 Fotos als offline markiert und in den Papierkorb geschoben (30 Tage Aufbewahrung). Behoben am 29.10. mit `docker restart immich_server` + Scan – alle Fotos wiederhergestellt.
-- **Schutz seither:** Unassigned-Devices-Skript `/boot/config/plugins/unassigned.devices/BRUNKEN-NAS_photo.sh` (in `samba_mount.cfg` als `command=` bei der Foto-Freigabe eingetragen). Es startet `immich_server` nach jedem Einbinden der Freigabe neu und schreibt einen Eintrag ins Syslog (`immich-nfs`).
+- **Schutz seither:** Unassigned-Devices-Skript `/boot/config/plugins/unassigned.devices/BRUNKEN-NAS_photo.sh` (in `samba_mount.cfg` als `command=` bei der Foto-Freigabe eingetragen). Es startet `immich_server` nach jedem Einbinden der Freigabe neu und schreibt einen Eintrag ins Syslog (`immich-nfs`). Getestet am 29.10.2026 per Remount.
+  - ⚠️ UD arbeitet mit einer RAM-Kopie `/tmp/unassigned.devices/config/samba_mount.cfg` und schreibt sie bei Änderungen auf den Stick zurück. Konfiguration daher über die UD-Oberfläche ändern oder **beide** Dateien gleich anpassen.
+  - Remount zum Testen: `rc.unassigned umount 'BRUNKEN-NAS:/volume1/photo'` und `rc.unassigned mount …` – mit dem Gerätenamen, nicht dem Mount-Pfad (sonst passiert nichts, Ausgabe trotzdem „success“).
 - Prüfen bei „Immich ist leer“: `docker exec immich_server mount | grep media` – muss `nfs` zeigen, nicht `tmpfs`. **Papierkorb in Immich nicht leeren**, solange das nicht geklärt ist.
 
 ---
